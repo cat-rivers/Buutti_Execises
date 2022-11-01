@@ -8,10 +8,7 @@ let isWorthPlaying =
   (score >= 4 && hoursToPriceRatio >= 4) ||
   (score >= 5 && hoursToPriceRatio >= 2);
 
-if (isWorthPlaying) {
-  console.log("Is worth paying");
-} else {
-  console.log("Is not worth it");
-}
+const result = isWorthPlaying ? "Is worth paying" : "Is not worth it";
 
 console.log(hoursToPriceRatio);
+console.log(result);
