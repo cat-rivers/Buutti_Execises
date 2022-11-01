@@ -1,0 +1,12 @@
+Sorting Deck of cards
+
+
+for each card in deck {
+    compare to  card under
+    if card under is larger{
+        stay
+    }else{
+        change places
+    }
+}
+Repeat until we go can go through the deck with zero changes

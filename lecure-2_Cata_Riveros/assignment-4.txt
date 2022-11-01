@@ -1,0 +1,20 @@
+Sorting Boxes
+
+a)
+    move through the line until you find a green box.
+    take it out and put it into its own line.
+    repeat until no green boxes left. 
+    Join the green line with yellow line 
+   
+
+b)
+    for each box in the list{
+        if box is green{
+            go to new line
+        }else{
+            stay put
+        }
+    }Repeat until no green boxes left
+    green  + yellow lines
+    
+   

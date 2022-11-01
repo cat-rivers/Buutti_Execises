@@ -1,0 +1,22 @@
+Time Calculations Pseudocode
+
+
+
+
+calculate(time){
+    hours = Round down(time/3600)
+    minutes = Round down((time%3600)/60)
+    seconds = time % 60
+Print(hours, minutes, seconds)
+}
+
+
+example:
+calculate(23500){
+    hours = Round down(23500/3600)
+    minutes = Round down((23500%3600)/60)
+    seconds = 23500 % 60
+    print(hours "hours" , minutes"minutes", seconds"seconds")
+}
+
+Result = 6 hours 31 minutes 40 seconds

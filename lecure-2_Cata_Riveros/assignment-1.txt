@@ -1,0 +1,28 @@
+info:
+    age numbers from students: 24, 19, 32, 55, 26
+
+
+a) algorithm that calculates average age of participants(natural language)
+
+    add ages in group
+    divide sum by the number of participants
+
+b) pseudocode version
+
+
+    ages of participants = [24, 19, 32, 55, 26]
+    average age of participants(ages){
+        sum = add the ages and get total sum
+        amount=  get the number participants
+        division = divide sum by amount(sum/amount)
+    }
+
+c) pseudocode using loops
+
+sum = 0
+for each number in [24, 19, 32, 55, 26]{
+    add to sum 
+    until it goes through the list of ages
+}
+divide the sum by amount of participants
+
