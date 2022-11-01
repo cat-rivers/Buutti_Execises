@@ -8,7 +8,7 @@ if (days30.includes(month)) {
   console.log(`Month ${month} has 30 days`);
 } else if (days31.includes(month)) {
   console.log(`Month ${month} has 31 days`);
-} else {
+} else if (month === 2) {
   console.log("The month has 28 days");
 }
 
