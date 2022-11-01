@@ -1,5 +1,5 @@
 // Flowchart ATM
-
+```js
 const balance = -10;
 const isActive = true;
 const checkBalance = true;
@@ -19,3 +19,4 @@ if (checkBalance) {
 } else {
   console.log("Have a nice day");
 }
+```;
