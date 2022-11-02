@@ -4,6 +4,16 @@ const n1 = "ana";
 const n2 = "monica";
 const n3 = "lina";
 
+//  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+
+// this could bin utilities
+const descending = (a,b) => a.length > b.length ? -1 : 1;
+
+const items = [n1,n2,n3];
+
+console.log(items.sort(descending).join(", "));
+console.log(items.sort().reverse().join(", "));
+
 let first;
 let second;
 let third;
@@ -25,4 +35,4 @@ if (n1.length > n2.length && n1.length > n3.length) {
     result = compileText(n3, n1, n2);
 }
 
-console.log(result);
+// console.log(result);
