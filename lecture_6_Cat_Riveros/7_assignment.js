@@ -11,8 +11,8 @@ const average = fruits.reduce((a, b) => {
   return (a + b.weight) / fruits.length;
 }, 0);
 
-
 //calculate  difference between weights and average 
+
 for (i = 0; i < fruits.length; i++) {
   const diff = fruits[i].weight - average;
   fruits[i].differenceFromAverage = diff;
