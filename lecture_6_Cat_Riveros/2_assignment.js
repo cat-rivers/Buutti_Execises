@@ -1,21 +1,39 @@
-const number1 = 10;
+const number1 = 2;
 const number2 = 10;
-const number3 = 11;
+const number3 = 4;
 
-// if (number1 === number2 && number1 === number3){
-//     console.log("they are all the same number")
-// }else if(number1 > number2 && number1 > number3){
+const compileText = (t1, t2, t3) => {
+  console.log(
+    "largest number is: ",
+    t1,
+    "smallest number is: ",
+    t2 > t3 ? t3 : t2
+  );
+};
 
-// }
-
-const largestNumber = Math.max(number1, number2, number3);
-const smallestNumber = Math.min(number1, number2, number3);
-
-if (largestNumber > smallestNumber) {
-  console.log(`${largestNumber} is the largest.`);
-  if (smallestNumber < largestNumber) {
-    console.log(`${smallestNumber} is the smallest.`);
-  }
-} else {
-  console.log(`All numbers are equal.`);
+if (number1 === number2 && number2 === number3) {
+  console.log("They are the same");
+} 
+else if (number1 > number2 && number1 > number3) {
+  compileText(number1, number2, number3);
+} 
+else if (number2 > number1 && number2 > number3) {
+  compileText(number2, number1, number3);
+} 
+else {
+  compileText(number3, number1, number2);
 }
+
+/*_________different method without if/else_________
+
+
+const arr = [number1, number2, number3];
+const minNumber = arr.reduce((a, b) => {
+  return a < b ? a : b;
+});
+const maxNumber = arr.reduce((a, b) => {
+  return a > b ? a : b;
+});
+console.log(maxNumber, minNumber);
+
+*/
