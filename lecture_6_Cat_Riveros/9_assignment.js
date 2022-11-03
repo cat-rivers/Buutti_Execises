@@ -22,3 +22,5 @@ const result =
 
 console.log(computers);
 console.log(result.id);
+
+//testing mirroring git repository from github to gitlab
