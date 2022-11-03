@@ -15,7 +15,7 @@ if (days30.includes(month)) {
   console.log("not a valid month")
 }
 
-//Switch case
+//______Switch case_________
 
 const monthNum = 3;
 let days;

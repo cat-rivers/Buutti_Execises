@@ -2,7 +2,7 @@ const number1 = 2;
 const number2 = 10;
 const number3 = 4;
 
-const compileText = (t1, t2, t3) => {
+const numberChecker = (t1, t2, t3) => {
   console.log(
     "largest number is: ",
     t1,
@@ -15,16 +15,17 @@ if (number1 === number2 && number2 === number3) {
   console.log("They are the same");
 } 
 else if (number1 > number2 && number1 > number3) {
-  compileText(number1, number2, number3);
+  numberChecker(number1, number2, number3);
 } 
 else if (number2 > number1 && number2 > number3) {
-  compileText(number2, number1, number3);
+  numberChecker(number2, number1, number3);
 } 
 else {
-  compileText(number3, number1, number2);
+  numberChecker(number3, number1, number2);
 }
 
-/*_________different method without if/else_________
+/*_________different method without if/else 
+but also not using Math.min or max_________
 
 
 const arr = [number1, number2, number3];
