@@ -1,26 +1,17 @@
-// Ternary with context
-
 const computers = [
   {id: "computer 1", time: 42, energy: 600},
   {id: "computer 2", time: 57, energy: 480},
 ];
 
-const avg = computers.reduce((a, b) => {
-  return (a + b.energy) / computers.length;
-}, 0);
 
-console.log(avg);
+//Ternary operation
 
-for (i = 0; i < computers.length; i++) {
-  const power = (computers[i].energyUsed = avg * computers[i].time);
-}
+(computers[0].energy * computers[0].time) < (computers[1].energy * computers[1].time)
+                ? console.log("computer 1 is more efficient")
+                : console.log("computer 2 is more efficient")
 
-const result =
-  computers[0].energyUsed > computers[1].energyUsed
-    ? computers[0]
-    : computers[1];
+// extra __________________
 
-console.log(computers);
-console.log(result.id);
-
-//testing mirroring git repository from github to gitlab
+console.log( (computers[0].energy * computers[0].time) < (computers[1].energy * computers[1].time)
+              ? "computer 1 is more efficient" 
+              : "computer 2 is more efficient")

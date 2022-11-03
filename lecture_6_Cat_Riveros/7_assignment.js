@@ -5,7 +5,7 @@ const fruits = [
   {fruitName: "mango", weight: 150},
 ];
 
-// calculate avergae weight of fruits
+// calculate average weight of fruits
 
 const average = fruits.reduce((a, b) => {
   return (a + b.weight) / fruits.length;
@@ -20,8 +20,15 @@ for (i = 0; i < fruits.length; i++) {
 
 //use reduce to find the smallest difference
 const smallestDifference = fruits.reduce((a, b) => {
-  return a.differenceFromAverage < b.differenceFromAverage ? a : b;
+  return  a.differenceFromAverage < b.differenceFromAverage 
+          ? a 
+          : b;
 });
 
-console.log("average weight of fruit: " + average.toFixed(3));
-console.log(`Closest fruit to average weight: ${smallestDifference.fruitName} (${smallestDifference.weight} grams)`);
+console.log(
+  "average weight of fruit: " + 
+   average.toFixed(3));
+   
+console.log(
+  "Closest fruit to average weight: " + 
+  smallestDifference.fruitName);
