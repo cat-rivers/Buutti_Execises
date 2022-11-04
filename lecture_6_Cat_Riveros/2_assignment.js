@@ -1,6 +1,6 @@
-const number1 = 2;
+const number1 = 14;
 const number2 = 10;
-const number3 = 4;
+const number3 = 1;
 
 const numberChecker = (t1, t2, t3) => {
   console.log(
