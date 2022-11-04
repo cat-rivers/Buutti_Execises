@@ -2,23 +2,31 @@
 
 const days30 = [4, 6, 9, 11];
 const days31 = [1, 3, 5, 7, 8, 10, 12];
+const months = 
+    ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const month = 4;
 
 
-if (days30.includes(month)) {
-  console.log(`Month ${month} has 30 days`);
-} else if (days31.includes(month)) {
-  console.log(`Month ${month} has 31 days`);
-} else if (month === 2) {
-  console.log("The month has 28 days");
-}else{
-  console.log("not a valid month")
+if(month > 0 && month <= 12)
+{
+  if (days30.includes(month)) {
+    console.log(`${months[month-1]} has 30 days`);
+  } 
+  if (days31.includes(month)) {
+    console.log(`${month[months-1]} has 31 days`);
+  }
+  if (month === 2) {
+    console.log("has 28 days");
+  }
 }
+else{console.log("not valid month")}
+
+
 
 //______Switch case_________
 
-const monthNum = 13;
-const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+const monthNum = 12;
+
 
 switch (monthNum) {
   case 1:
