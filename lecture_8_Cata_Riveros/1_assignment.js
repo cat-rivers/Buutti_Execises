@@ -1,5 +1,5 @@
 // a)
-const lang = "eng"
+const lang = "fi"
 
 const hello = (language)=>{
     if(language === "es"){
@@ -28,4 +28,4 @@ const hello2 = (language2)=>{
     }
 }
 
-hello2("es")
+hello("eng")
