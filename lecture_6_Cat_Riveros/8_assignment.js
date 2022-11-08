@@ -1,9 +1,10 @@
 // Ternary
 
 const userName = "Cata";
+const isInputTrue = (typeof userName === "string" && userName)
 
 const result =
-  typeof userName === "string"
+  isInputTrue
         ? `Hello ${userName}!`
         : "Please give me your name!";
 
