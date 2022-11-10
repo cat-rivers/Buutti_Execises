@@ -1,42 +1,23 @@
 let x = 0;
 let y = 0;
-let yOperation = 0;
-let xOperation = 0;
 
 const commandList = "NNEESSWWCNNEEENNNCEESSSWNNNECEESWWNNNEEEBENNNEEE";
 
-const commandCount = (letter, command) => {
-  let count = 0;
-
+const commandCount = ( command) => {
+  
   for (let i = 0; i < command.length; i++) {
-    if (command.charAt(i).toLowerCase() === letter) {
-      count++;
+    const letter = command.charAt(i).toLowerCase() ;
+        if (letter === "n") { y = y + 1; }
+        if (letter === "e") { x = x + 1;  }
+        if (letter === "s") { y = y - 1;  }
+        if (letter === "w") { x = x - 1;  }
+        if (letter === "c") { continue; }
+        if (letter === "b") { break;  }
     }
-  }
-  console.log(count);
-};
 
-// if (letter === "n") {
-//     y = y + count;
-//   }
-//   if (letter === "e") {
-//     x = x + count;
-//   }
-//   if (letter === "s") {
-//     y = y - count;
-//   }
-//   if (letter === "w") {
-//     x = x - count;
-//   }
-//   if (letter === "c") {
-//     continue;
-//   }
-//   if (letter === "b") {
-//     break;
-//   }
-commandCount("n", commandList);
-commandCount("e", commandList);
-commandCount("s", commandList);
-commandCount("w", commandList);
-commandCount("c", commandList);
-commandCount("b", commandList);
+  console.log( "y is: ", y , "\nx is: " , x);
+}
+  
+commandCount(commandList)
+
+

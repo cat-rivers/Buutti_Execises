@@ -1,4 +1,4 @@
-// a)
+// a) _______________________________________
 
 const exponentValueList = (n) =>{
     let count = 1
@@ -10,7 +10,10 @@ const exponentValueList = (n) =>{
             count++
 }}}
 console.log("Results part a: ")
-exponentValueList(6)
+exponentValueList(-10)
+
+
+// b) ________________________________________
 
 const exponentValueList2 = (n,numberToPower) =>{
     let count = 1
@@ -22,4 +25,4 @@ const exponentValueList2 = (n,numberToPower) =>{
             count++
 }}}
 console.log("Results part b: ")
-exponentValueList2(4,2)
+exponentValueList2(0,2)
