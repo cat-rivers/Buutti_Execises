@@ -3,10 +3,29 @@ const secondTriangle = {name: "second triangle", width: 4.3, length: 6.4};
 const thirdTriangle = {name: "third triangle", width: 5.5, length: 5.0};
 
 const areaOfTriangle = (triangle) => {
-  triangle.area = (triangle.width * triangle.length) / 2;
-  return triangle.area;
+   const area = (triangle.width * triangle.length) / 2;
+   return area
 };
 
-console.log(`area of first triangle is: ${areaOfTriangle(firstTriangle)}`);
-console.log(`area of second triangle is: ${areaOfTriangle(secondTriangle)}`);
-console.log(`area of third triangle is: ${areaOfTriangle(thirdTriangle)}`);
+const firstArea = areaOfTriangle(firstTriangle)
+const secondArea = areaOfTriangle(secondTriangle)
+const thirdArea =areaOfTriangle(thirdTriangle)
+
+const findBiggestArea = () => {
+    if(firstArea > secondArea && firstArea > thirdArea)
+    {  
+      console.log("first triangle has biggest area!")
+    }
+    if( secondArea > firstArea && secondArea > thirdArea) 
+    { 
+      console.log("second triangle has biggets area!")
+    }
+    if( thirdArea > firstArea && thirdArea > secondArea)  
+    { 
+      console.log("second triangle has biggets area!")
+    }
+}
+console.log(`area of first triangle is: ${firstArea}`);
+console.log(`area of second triangle is: ${secondArea}`);
+console.log(`area of third triangle is: ${thirdArea}`);
+findBiggestArea()

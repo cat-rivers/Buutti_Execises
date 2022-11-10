@@ -7,5 +7,5 @@ while (true) {
   }
   i++;
 }
-console.log(i);
+console.log("last number added: " , i);
 

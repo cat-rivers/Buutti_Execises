@@ -1,4 +1,4 @@
-const { version } = require("yargs");
+
 
 const triangles = [
   {name: "first triangle", width: 7.0, length: 3.5},

@@ -2,16 +2,24 @@
 
 const agesOfStudents = [20, 35, 27, 44, 24, 32];
 
-console.log("array of ages: " , agesOfStudents);
+console.log(
+  "array of ages: " ,
+  agesOfStudents
+);
 
-// b)
+// b) ***** Average age of students with loop
 
 const avg = (array) => {
   let sum = 0;
-  for (let i = 0; i < agesOfStudents.length; i++) {
-    sum += agesOfStudents[i];
+  for (let i = 0; i < array.length; i++) {
+    sum += array[i];
   }
-  return sum / agesOfStudents.length;
+  return sum / array.length;
 };
 
-console.log("Average age of students: " , avg(agesOfStudents).toFixed(2));
+console.log(
+  "Average age of students: " +
+  avg(agesOfStudents).toFixed(2)
+);
+
+
