@@ -1,9 +1,9 @@
 // a) __________________________
 
-const lang = "es";
+const lang = "esp";
 
 const hello = (language) => {
-  if (language === "es") {console.log("Hola mundo!"); }
+  if (language === "esp") {console.log("Hola mundo!"); }
   if (language === "eng") {console.log("Hello world!"); }
   if (language === "fi") {console.log("Hei Maailman!"); }
 };
