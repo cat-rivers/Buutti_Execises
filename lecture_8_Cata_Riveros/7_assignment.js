@@ -1,6 +1,7 @@
+const { count } = require("yargs");
 
 
-function checkSentenceVowels(sentence) {
+function checkSentenceVowels(sentence, vowel) {
   let totalVowelCount = 0;
   // Check how many different vowels we have in the sentence
   const countOfVowels = (vowel) => {
@@ -13,15 +14,16 @@ function checkSentenceVowels(sentence) {
     }
     console.log(` count of ${vowel.toUpperCase()} is ${count}`);
   };
-  countOfVowels("a");
-  countOfVowels("e");
-  countOfVowels("i");
-  countOfVowels("o");
-  countOfVowels("u");
-  countOfVowels("y");
+  // countOfVowels("a");
+  // countOfVowels("e");
+  // countOfVowels("i");
+  // countOfVowels("o");
+  // countOfVowels("u");
+  // countOfVowels("y");
+  console.log(vowel, count)
   console.log("total vowel count: " + totalVowelCount);
 }
 
-checkSentenceVowels("A wizard's job is to vex chumps quickly in fog.");
+checkSentenceVowels("A wizard's job is to vex chumps quickly in fog.", "a");
 
-checkSentenceVowels("aaaa bbb ccc eeee")
+checkSentenceVowels("aaaa bbb ccc eeee","a")
