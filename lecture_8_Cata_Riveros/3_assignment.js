@@ -11,7 +11,7 @@ function partA() {
             count++
 }}}
 console.log("Results part a: ")
-exponentValueList(-10)
+exponentValueList(5)
 }
 
 partA()

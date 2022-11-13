@@ -4,6 +4,7 @@ const triangles = [
   {name: "third triangle", width: 5.5, length: 5.0},
 ];
 
+
 // *****Version A **** trying out array.map
 
 function versionA() {
@@ -31,7 +32,7 @@ versionA()
 
 
 
-// ******* Version B  ***** using for loop
+// ******* Version B  ***** using for loop **************
 
 
 
@@ -54,7 +55,7 @@ console.log("Area of first triangle: " + triangles[0].area);
 console.log("Area of second triangle: " + triangles[1].area);
 console.log("Area of third triangle: " + triangles[2].area);
 
-// //************ Extra ************************
+// //Extra
 
 const biggestTriangle = triangles.reduce((a, b) => {
           return a.area > b.area 
