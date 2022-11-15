@@ -8,7 +8,7 @@ const fruitDeleter = (array, fruit) => {
   array.splice(index, 1);
 };
 
-//dont like pears? its GONE!
+//dont like pears?  GONE!
 fruitDeleter(fruits, "pear");
 console.log(fruits);
 
