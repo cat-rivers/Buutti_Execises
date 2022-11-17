@@ -1,3 +1,5 @@
+// IGNORE THIS EXERCISE... DID NOT SOLVE THIS :)
+
 const charIndex = {
   a: 1,
   b: 2,
@@ -28,18 +30,14 @@ const charIndex = {
 };
 
 const text = "a black cat";
-const arr = [];
-for (const letter of text) {
-  const num = charIndex[letter];
-  arr.push(num);
-}
-console.log(arr);
+const arr = text.split("");
 
-// const charIndexString = (string) => {
-//     let word = "";
-//     for (let letter of string) {
-//       const num = charIndex[letter];
-//       word += num;
-//     }
-//     return word;
-//   };
+// const res = [...text].reduce((a, v) => {
+//   return {...a, [v]: a[v] ? a[v] + 1 : 1};
+// });
+// console.log(res);
+// AHHHGGGGGGGGGGGGGG
+const result = new Array(26).fill(0);
+console.log(result);
+const index = Object.keys(charIndex);
+console.log(index);
