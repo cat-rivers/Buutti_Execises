@@ -1,4 +1,4 @@
-// IGNORE THIS EXERCISE... DID NOT SOLVE THIS :)
+// IGNORE THIS EXERCISE... Not happy with this  :)
 
 const charIndex = {
   a: 1,
@@ -30,14 +30,46 @@ const charIndex = {
 };
 
 const text = "a black cat";
-const arr = text.split("");
 
-// const res = [...text].reduce((a, v) => {
-//   return {...a, [v]: a[v] ? a[v] + 1 : 1};
-// });
-// console.log(res);
-// AHHHGGGGGGGGGGGGGG
-const result = new Array(26).fill(0);
-console.log(result);
-const index = Object.keys(charIndex);
-console.log(index);
+// **************
+const counts = {...charIndex};
+Object.keys(counts).forEach((key) => {
+  //makes new object with values of 0
+  counts[key] = 0;
+});
+
+// this is to include only letter, ignore spaces commas, etc
+for (const l of text) {
+  if (l.charCodeAt(0) >= 65 && l.charCodeAt(0) <= 122) {
+    counts[l]++; //incerase count if letter is found
+  }
+}
+
+// console.log(Object.values(counts)); // returns the object as array of values
+// **************
+
+// **************
+
+const result1 = [];
+for (const i in charIndex) {
+  result1.push(0);
+}
+
+for (const letter of text) {
+  if (Object.keys(charIndex).includes(letter)) {
+    result1[charIndex[letter] - 1]++;
+  }
+}
+// console.log(result1);
+
+// **************
+//This one is mine from Friday morning
+const myArr = new Array(26).fill(0);
+
+for (l of text) {
+  if (Object.keys(charIndex).includes(l)) {
+    myArr[charIndex[l] - 1]++;
+  }
+}
+
+console.log(myArr);
