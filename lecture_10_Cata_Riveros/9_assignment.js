@@ -2,23 +2,27 @@
 //https://coursework.vschool.io/array-reduce-exercises/
 
 // 1)
- function numberOne () { function totalSum(arr) {
-  return arr.reduce((a, b) => a + b);
-}
-console.log(totalSum([1, 2, 1, 3, 4]));
-}
+ function numberOne() {
+  console.log("exercise 1: ")
+   function totalSum(arr) {
+     return arr.reduce((a, b) => a + b);
+   }
+   console.log(totalSum([1, 2, 3]));
+ }
 
-// 2)
+ // 2)
 
-function numberTwo  ()  {  function stringConcat(arr) {
-  return arr.reduce((a, b) => a + b, "");
-}
+ function numberTwo() {
+  console.log("Exercise 2: ")
+   function stringConcat(arr) {
+     return arr.reduce((a, b) => a + b, "");
+   }
 
-console.log(stringConcat([1, 2, 3]));
-}
+   console.log(stringConcat([1, 2, 3]));
+ }
 
 // 3)
-var voters = [
+const voters = [
   {name: "Bob", age: 30, voted: true},
   {name: "Jake", age: 32, voted: true},
   {name: "Kate", age: 25, voted: false},
@@ -35,7 +39,9 @@ var voters = [
 
 
 
-function numberThree() { function countVotes(array) {
+function numberThree() { 
+  console.log("Exercise 3: ")
+  function countVotes(array) {
     return array.reduce((count, {voted}) => voted? count +1 : count, 0)
   }
 
@@ -47,82 +53,75 @@ console.log(countVotes(voters));
 // 4)
 
 function numberFour () {
-var wishlist = [
-  {title: "Tesla Model S", price: 90000},
-  {title: "4 carat diamond ring", price: 45000},
-  {title: "Fancy hacky Sack", price: 5},
-  {title: "Gold fidgit spinner", price: 2000},
-  {title: "A second Tesla Model S", price: 90000},
-];
+  console.log("Exercise 4: ")
+  const wishlist = [
+    {title: "Tesla Model S", price: 90000},
+    {title: "4 carat diamond ring", price: 45000},
+    {title: "Fancy hacky Sack", price: 5},
+    {title: "Gold fidgit spinner", price: 2000},
+    {title: "A second Tesla Model S", price: 90000},
+  ];
 
-function shoppingSpree(arr) {
-  return arr.reduce((cost, {price}) => cost + price, 0)
-}
-console.log(shoppingSpree(wishlist))
+  function shoppingSpree(arr) {
+    return arr.reduce((cost, {price}) => cost + price, 0)
+  }
+  console.log(shoppingSpree(wishlist))
 }
 
 
 // 5) flatten arrays
 function numberFive (){
-const arrays = [
-    ["1", "2", "3"],
-    [true],
-    [4, 5, 6]
-];
+  console.log("Exercise 5: ")
+  const arrays = [
+      ["1", "2", "3"],
+      [true],
+      [4, 5, 6]
+  ];
 
-function flatten(array){
-    return array.reduce((flatArray , arr) => flatArray.concat(arr), [])
-}
+  function flatten(array){
+      return array.reduce((flatArray , arr) => flatArray.concat(arr), [])
+  }
 
-// const tesArr = arrays.flat() >-- this exists so not sure why the reduce..... 
-console.log(flatten(arrays))
+  // const tesArr = arrays.flat() >-- this exists so not sure why the reduce..... 
+  console.log(flatten(arrays))
 }
 
 // 6) kesken 
 
-const voterResults = (array) => {
-  const youngVotes = array.reduce(
-    (count, voter) =>
-      voter.age < 26 && voter.voted === true ? count + 1 : count,
-    0
-  );
+function numberSix (){
+  console.log("Exercise 6: ")
+  const functions = [
+    (count, voter) => voter.age < 26 && voter.voted === true ? count + 1 : count,
+    (count, voter) => voter.age < 26 ? count + 1 : count,
+    (count, voter) => voter.age > 25 && voter.age < 36 && voter.voted === true? count + 1: count,
+    (count, voter) => voter.age > 25 && voter.age < 36 ? count + 1 : count,
+    (count, voter) => voter.age > 35 && voter.voted === true ? count + 1 : count,
+    (count, voter) => voter.age > 35 ? count + 1 : count  
+  ]
+    
+  function voterResults(array, func) {
+      
+    const results = functions.map(arg => array.reduce(arg , 0))
 
-  const youngPeople = array.reduce(
-    (count, voter) => (voter.age < 26 ? count + 1 : count),
-    0
-  );
+    const voteResults = { 
+        numYoungVotes: results[0],
+        numYoungPeople: results[1],
+        numMidVotesPeople: results[2],
+        numMidsPeople: results[3],
+        numOldVotesPeople: results[4],
+        numOldsPeople: results[5] 
+    }     
+    return voteResults 
+  }
 
-  const numMidVotesPeople = array.reduce(
-    (count, voter) =>
-      voter.age > 25 && voter.age < 36 && voter.voted === true
-        ? count + 1
-        : count,
-    0
-  );
-  const numMidPeople = array.reduce(
-    (count, voter) => (voter.age > 25 && voter.age < 36 ? count + 1 : count),
-    0
-  );
-  const numOldVotesPeople = array.reduce(
-    (count, voter) =>
-      voter.age > 35 && voter.voted === true ? count + 1 : count,
-    0
-  );
-  const numOldPeople = array.reduce(
-    (count, voter) => (voter.age > 35 ? count + 1 : count),
-    0
-  );
-
-  return {
-    NumYoungVotes: youngVotes,
-    NumYoungPeople: youngPeople,
-    NumMidVotes: numMidVotesPeople,
-    NumMidPeople: numMidPeople,
-    NumOldVotes: numOldVotesPeople,
-    NumOldPeople: numOldPeople,
-  };
-};
-
-console.log(voterResults(voters));
+  console.log(voterResults(voters))
+}
 
 
+
+numberOne();
+numberTwo();
+numberThree();
+numberFour();
+numberFive();
+numberSix()
