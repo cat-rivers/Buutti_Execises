@@ -36,10 +36,8 @@ console.log(newObj) // new array of objects
 /* c) 
 Making a copy of the array will take up more space so if there were 100k entries
 the first method would not use up so much space compared to .map.
- But modifying the original objects might not be a good idea either.
-Performance wise, After some reading It seems .map doesnt perform as fast or efficiently as (for methods)
-
-
+But modifying the original objects might not be a good idea either in some cases. 
+Performance wise, after some reading It seems .map doesnt perform as fast or efficiently as (for methods)
 
 */
 

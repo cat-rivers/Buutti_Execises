@@ -13,4 +13,4 @@ function sentencify(array, index){
     
 }
 
-console.log(sentencify(wordArray,3))
+console.log(sentencify(wordArray,0))

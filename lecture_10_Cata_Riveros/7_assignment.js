@@ -7,8 +7,7 @@ function F (n){
     }
     
 
-console.log(F(0) , F(1), F(2), F(3), F(4), F(5))
-console.log(F(6) , F(7), F(8), F(17))
+console.log(F(17))
 
 
 
