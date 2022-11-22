@@ -76,6 +76,36 @@ console.log(flatten(arrays))
 
 // 6) kesken 
 
-function voterResults(array) {
-    const reducer = () => { array.reduce((count, {voted}) => voted? count +1 : count, 0)}
-  }
+const voterResults = (array) => {
+    const youngVotes = array.reduce((count , voter) => voter.age < 26 && voter.voted === true
+    ?count + 1 
+    : count , 0)
+    
+    const youngPeople = array.reduce((count , voter) => voter.age < 26 
+    ? count + 1 
+    : count , 0)
+    
+    const numMidVotesPeople = array.reduce((count , voter) => (voter.age > 25 && voter.age < 36 && voter.voted === true) 
+    ? count + 1 
+    : count , 0)
+    const numMidPeople = array.reduce((count , voter) => (voter.age > 25 && voter.age < 36 ) 
+    ? count + 1 
+    : count , 0)
+    const numOldVotesPeople = array.reduce((count , voter) => (voter.age > 35  && voter.voted === true) 
+    ? count + 1 
+    : count , 0)
+    const numOldPeople = array.reduce((count , voter) => (voter.age > 35 ) 
+    ? count + 1 
+    : count , 0)
+    
+    return {
+        NumYoungVotes : youngVotes,
+        NumYoungPeople : youngPeople,
+        NumMidVotes : numMidVotesPeople,
+        NumMidPeople : numMidPeople,
+        NumOldVotes : numOldVotesPeople,
+        NumOldPeople : numOldPeople
+    } 
+    }
+    
+console.log(voterFilter(voters))
