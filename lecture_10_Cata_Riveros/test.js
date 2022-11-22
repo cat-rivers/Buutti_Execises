@@ -1,4 +1,3 @@
-const { array } = require("yargs");
 
 const votersList = [
     {name: "Bob", age: 30, voted: true},
@@ -15,91 +14,42 @@ const votersList = [
     {name: "Zack", age: 19, voted: false},
   ];
 
-let youngPeopleVotes = 0
+const functions = [
+    (count, voter) => voter.age < 26 && voter.voted === true ? count + 1 : count,
+    (count, voter) => voter.age < 26 ? count + 1 : count,
+    (count, voter) => voter.age > 25 && voter.age < 36 && voter.voted === true? count + 1: count,
+    (count, voter) => voter.age > 25 && voter.age < 36 ? count + 1 : count,
+    (count, voter) => voter.age > 35 && voter.voted === true ? count + 1 : count,
+    (count, voter) => voter.age > 35 ? count + 1 : count  
+  ]
+    
+  
+function voterResults(array, func) {
+      
+    const results = functions.map(arg => array.reduce(arg , 0))
 
-const voteResults = { 
-    numYoungVotes: 0,
-    numYoungPeople: 0,
-    numMidVotesPeople: 0,
-    numMidsPeople: 0,
-    numOldVotesPeople: 0,
-    numOldsPeople: 0 
+    const voteResults = { 
+        numYoungVotes: results[0],
+        numYoungPeople: results[1],
+        numMidVotesPeople: results[2],
+        numMidsPeople: results[3],
+        numOldVotesPeople: results[4],
+        numOldsPeople: results[5] 
+    }  
+        
+    return voteResults 
   }
   
-  const functions = [
-    () => voteResults.numYoungVotes =+ 1,
-    () => voteResults.numYoungPeople =+ 1,
-    () => voteResults.numMidVotesPeople =+ 1,
-    () => voteResults.numMidsPeople =+ 1,
-    () => voteResults.numOldVotesPeople =+ 1,
-    () => voteResults.numOldsPeople =+ 1,    
-  ]
+  
+
+  console.log(voterResults(votersList))
+  
+
   
 
 
-// ]
-
-function resulter (array, func, i){
-  
-    
-        if( array.age < 25 && array.voted === true ) {func[0]()}   
-        if( array.age < 25 ) {func[1]()}   
-        // if( array[i].age > 24 && array[i].age < 36 && array[i].voted === true) {func[2]()}   
-        // if( array[i].age > 24 && array[i].age < 36) {func[3]()}   
-        // if( array[i].age < 25 ) {func[4]()}   
-        // if( array[i].age < 25 ) {func[5]()}   
         
          
-}
-
-for(let i = 0; i < votersList.length; i++){
-   console.log(  resulter(votersList[i], functions, i))
-}
-
-console.log(voteResults)
 
 
-
-// const votersResults = (array) => {
-//     const youngVotes = array.reduce(
-//       (count, voters) =>
-//         voters.age < 26 && voters.voted === true ? count + 1 : count,
-//       0
-//     );
-  
-//     const youngPeople = array.reduce(
-//       (count, voters) => (voters.age < 26 ? count + 1 : count),
-//       0
-//     );
-  
-//     const numMidVotesPeople = array.reduce(
-//       (count, voters) =>
-//         voters.age > 25 && voters.age < 36 && voters.voted === true
-//           ? count + 1
-//           : count,
-//       0
-//     );
-//     const numMidPeople = array.reduce(
-//       (count, voters) => (voters.age > 25 && voters.age < 36 ? count + 1 : count),
-//       0
-//     );
-//     const numOldVotesPeople = array.reduce(
-//       (count, voters) =>
-//         voters.age > 35 && voters.voted === true ? count + 1 : count,
-//       0
-//     );
-//     const numOldPeople = array.reduce(
-//       (count, voters) => (voters.age > 35 ? count + 1 : count),
-//       0
-//     );
-  
-//     return {
-//       NumYoungVotes: youngVotes,
-//       NumYoungPeople: youngPeople,
-//       NumMidVotes: numMidVotesPeople,
-//       NumMidPeople: numMidPeople,
-//       NumOldVotes: numOldVotesPeople,
-//       NumOldPeople: numOldPeople,
-//     };
-//   };
   

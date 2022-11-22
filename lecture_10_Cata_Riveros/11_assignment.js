@@ -26,7 +26,6 @@ function findControl(target, control) {
     return target;
   }
   for (const child of target.children) {
-    //  console.log(`child of child :  ${child.name}\ntarget child:  ${target.name}\n`)
     let result = findControl(child, control);
     if (result !== null) {
       return result;
