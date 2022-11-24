@@ -9,7 +9,7 @@ const commandHandlers = {
     C: () => {},   
 }
 
-for(char of commandList){
+for(const char of commandList){
     if( char !== "B"){
         commandHandlers[char]()  
     }else{
