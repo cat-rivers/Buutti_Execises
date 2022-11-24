@@ -35,3 +35,12 @@ const calculateAverageScore = (input) => {
 
 console.log(calculateAverageScore("DFCBDABSB"))
 console.log(calculateAverageScore("AABBCC"))
+
+
+// c) ----------------------------
+
+const arrGrades = [ "AABAACAA", "FFDFDCCDCB", "ACBSABA", "CCDFABABC" ];
+
+
+const averagesTotals = arrGrades.map(element => calculateAverageScore(element))
+console.log(averagesTotals)
