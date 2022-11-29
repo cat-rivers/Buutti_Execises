@@ -1,0 +1,51 @@
+[
+  {
+    "name": "Rene Orosz",
+    "password": "hunter12",
+    "id": 12345678,
+    "books": [],
+    "books_history": []
+  },
+  {
+    "name": "catalina",
+    "password": "foobar",
+    "id": "VglbPsrtWD",
+    "books": [],
+    "books_history": []
+  },
+  {
+    "name": "roberto",
+    "password": "foodfsfdsbar",
+    "id": "zmc0NY5FmI",
+    "books": [],
+    "books_history": []
+  },
+  {
+    "name": "Toni",
+    "password": "fdsf",
+    "id": "ACh6koh3zQ",
+    "books": [],
+    "books_history": []
+  },
+  {
+    "name": "catalina",
+    "password": "foobar",
+    "id": "Z5GfY4Nl",
+    "books": [],
+    "books_history": []
+  },
+  {
+    "name": "roberto",
+    "password": "foodfsfdsbar",
+    "id": "JftQGXn0",
+    "books": [],
+    "books_history": []
+  },
+  {
+    "name": "Toni",
+    "password": "fdsf",
+    "id": "hY5qAUDg",
+    "books": [],
+    "books_history": []
+  }
+]

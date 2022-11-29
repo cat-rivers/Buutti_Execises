@@ -15,5 +15,7 @@
 - const updateDB
 - const getBookByISBN
 - const getBookByAuthorAndTitle
+- const bookDetails
+- const printDate
 
 ```
