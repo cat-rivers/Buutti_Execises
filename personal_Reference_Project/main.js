@@ -3,7 +3,7 @@ const fs = require("fs");
 const readlineSync = require("readline-sync");
 const {v4: uuidv4} = require("uuid");
 const ShortUniqueId = require("short-unique-id");
-const uid = new ShortUniqueId({length: 8});
+const uid = new ShortUniqueId({dictionary: "number", length: 5});
 
 // read db.json
 const getDB = () => {
@@ -31,7 +31,7 @@ const addUser = (name, password) => {
   const newUser = {
     name: name,
     password: password,
-    id: uid().toString(),
+    id: uid(),
     books: [],
     books_history: [],
   };
@@ -81,6 +81,7 @@ const getBookByAuthorAndTitle = (authorName, title) => {
 
 // function that prints ook details
 const bookDetails = (book) => {
+  const dbObject = getDB();
   // $ Ulysses by James Joyce (1922)
   // $ Books in library: 2
   // $ Available for borrowing: 1
@@ -91,14 +92,7 @@ const printDate = () => {
   // print date based on date string
 };
 
-// const updateUser = () => {
-//     const db = getDB();
-//     do something with the db
-//     const updatedDB = functionThatChangesDB(...)
-//     updateDB(updatedDB);
-// }
-
-// Testing
+// ******************   Testing  ************************
 
 // console.log("Books by isbn: \n", getBookByISBN("9781449325862"));
 // console.log(
@@ -106,6 +100,6 @@ const printDate = () => {
 //   getBookByAuthorAndTitle("nnn", "java")
 // );
 
-addUser("catalina", "foobar");
-addUser("roberto", "foodfsfdsbar");
-addUser("Toni", "fdsf");
+// addUser("catalina", "foobar");
+// addUser("roberto", "foodfsfdsbar");
+// addUser("Toni", "fdsf");
