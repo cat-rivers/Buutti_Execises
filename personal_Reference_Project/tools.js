@@ -1,7 +1,6 @@
 // Library node App
 const fs = require("fs");
 const readlineSync = require("readline-sync");
-const {v4: uuidv4} = require("uuid");
 const ShortUniqueId = require("short-unique-id");
 const uid = new ShortUniqueId({dictionary: "number", length: 5});
 
@@ -103,3 +102,15 @@ const printDate = () => {
 // addUser("catalina", "foobar");
 // addUser("roberto", "foodfsfdsbar");
 // addUser("Toni", "fdsf");
+
+module.exports = {
+  getDB,
+  updateDB,
+  getUsers,
+  updateUsers,
+  addUser,
+  getBookByAuthorAndTitle,
+  getBookByISBN,
+  bookDetails,
+  printDate,
+};
