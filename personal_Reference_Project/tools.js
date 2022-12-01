@@ -92,9 +92,18 @@ const checkUserInfo = (idNum) => {
   return result;
 };
 
-const checkPassword = (passwrd, userToCheck) => {
-  return userToCheck.password === passwrd ? true : false;
+const checkPassword = (userToCheck, n = 0) => {
+  console.log(n);
+  if (n >= 3) return false;
+  const passwordTry = readlineSync.question("Type password: ", {
+    hideEchoBack: true,
+  });
+  return userToCheck === passwordTry ? true : checkPassword(userToCheck, n + 1);
 };
+
+// const checkPassword = (passwrd, userToCheck) => {
+//   return userToCheck.password === passwrd ? true : false;
+// };
 
 // function that prints ook details
 const bookDetails = (book) => {
@@ -110,16 +119,6 @@ const printDate = () => {
 };
 
 // ******************   Testing  ************************
-
-// console.log("Books by isbn: \n", getBookByISBN("9781449325862"));
-// console.log(
-//   "Books by Author name or Title name: \n",
-//   getBookByAuthorAndTitle("nnn", "java")
-// );
-
-// addUser("catalina", "foobar");
-// addUser("roberto", "foodfsfdsbar");
-// addUser("Toni", "fdsf");
 
 module.exports = {
   getDB,

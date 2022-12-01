@@ -33,33 +33,26 @@ function loggedInList() {
 const logIn = (state) => {
   let idCorrect = false;
 
-  const id = readlineSync.question("Type your ID number: ", {
-    hideEchoBack: false,
-  });
+  const id = readlineSync.question("Type your ID number to login: ");
   const user = tools.checkUserInfo(id);
+
   if (user) {
     idCorrect = true;
-    const password = readlineSync.question("type password: ", {
-      hideEchoBack: true,
-    });
-    if (tools.checkPassword(password, user)) {
+    console.log("Account found");
+
+    if (tools.checkPassword(user.password)) {
+      console.log(`Welcome, ${user["name"]}`);
       return {...state, loggedIn: true};
     } else {
-      console.log("wrong password");
-      return {...state};
+      return {...state, loggedIn: false};
     }
-
-    // if (password === user.password) {
-    //   return {...state, loggedIn: true};
-    // } else {
-    //   console.log("wrong password");
-    //   return {...state};
-    // }
   } else {
-    console.log("Wrong id. type 'help'");
-    return {...state, loggedIn: false};
+    console.log("Id not found. try again");
+    return logIn(state);
   }
 };
+
+const signup = (state) => {};
 
 const commandList = {
   help: help,
@@ -72,14 +65,14 @@ const commandList = {
   list: "printList()",
   change_name: "changeName()",
   remove_account: "deleteAccount()",
-  logout: (state) => ({loggedIn: false}),
+  logout: (state) => ({...state, loggedIn: false}),
 };
 
 const greeting = `
-Welcome to Oulun kirjasto
-Get the list of available commands by typing 'help'.
+Welcome to Cats Library of Tech Books!.
 `;
-const prompt = "What would you like to do?";
+const prompt =
+  "What would you like to do?\nGet the list of available commands by typing 'help'.";
 
 const startApp = () => {
   // start the UI loop
