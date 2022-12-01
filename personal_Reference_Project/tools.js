@@ -78,6 +78,24 @@ const getBookByAuthorAndTitle = (authorName, title) => {
   return exactMatch.length > 0 ? exactMatch : booksArray.filter(findPartial);
 };
 
+// const checkUserInfo = (idNum) => {
+//   const idStr = idNum.toString();
+//   const users = getUsers();
+//   const result = users.find((element) => element.id === idStr);
+//   return result;
+// };
+
+const checkUserInfo = (idNum) => {
+  const idStr = idNum.toString();
+  const users = getUsers();
+  const result = users.find((element) => element.id === idStr);
+  return result;
+};
+
+const checkPassword = (passwrd, userToCheck) => {
+  return userToCheck.password === passwrd ? true : false;
+};
+
 // function that prints ook details
 const bookDetails = (book) => {
   const dbObject = getDB();
@@ -113,4 +131,6 @@ module.exports = {
   getBookByISBN,
   bookDetails,
   printDate,
+  checkUserInfo,
+  checkPassword,
 };

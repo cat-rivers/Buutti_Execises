@@ -7,10 +7,10 @@ function exitLibrary() {
   process.exit();
 }
 
-function getCommand(input) {
-  const strInut = input.toString();
-  commandList[strInut]();
-}
+const getCommand = (input) => {
+  const strInput = input.toString();
+  commandList[strInput]();
+};
 
 function help(state) {
   state.loggedIn ? loggedInList() : loggedOutList();
@@ -36,12 +36,29 @@ const logIn = (state) => {
   const id = readlineSync.question("Type your ID number: ", {
     hideEchoBack: false,
   });
+  const user = tools.checkUserInfo(id);
+  if (user) {
+    idCorrect = true;
+    const password = readlineSync.question("type password: ", {
+      hideEchoBack: true,
+    });
+    if (tools.checkPassword(password, user)) {
+      return {...state, loggedIn: true};
+    } else {
+      console.log("wrong password");
+      return {...state};
+    }
 
-  const password = readlineSync.question("type password: ", {
-    hideEchoBack: true,
-  });
-
-  return {...state, loggedIn: true};
+    // if (password === user.password) {
+    //   return {...state, loggedIn: true};
+    // } else {
+    //   console.log("wrong password");
+    //   return {...state};
+    // }
+  } else {
+    console.log("Wrong id. type 'help'");
+    return {...state, loggedIn: false};
+  }
 };
 
 const commandList = {
