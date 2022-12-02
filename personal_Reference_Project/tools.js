@@ -93,7 +93,6 @@ const checkUserInfo = (idNum) => {
 };
 
 const checkPassword = (userToCheck, n = 0) => {
-  console.log(n);
   if (n >= 3) return false;
   const passwordTry = readlineSync.question("Type password: ", {
     hideEchoBack: true,

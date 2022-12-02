@@ -1,6 +1,7 @@
 const readlineSync = require("readline-sync");
 const tools = require("./tools.js");
 let loggedIn = false;
+let LoggedUser;
 
 function exitLibrary() {
   process.stdout.write("Goodbye!");
@@ -42,6 +43,7 @@ const logIn = (state) => {
 
     if (tools.checkPassword(user.password)) {
       console.log(`Welcome, ${user["name"]}`);
+      LoggedUser = user;
       return {...state, loggedIn: true};
     } else {
       return {...state, loggedIn: false};
