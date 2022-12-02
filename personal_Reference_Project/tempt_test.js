@@ -133,10 +133,9 @@ const searchBook = (state) => {
 	const userSearchWord = readlineSync.question(
 		"Search for a book to borrow:\n"
 	);
-	console.log(tools.getBookByAuthorAndTitle(userSearchWord, userSearchWord));
-	//find book by name
-	// bookInfo()
-	//choose book by number(index? )
+	const book = tools.searchAndSelectBook(userSearchWord);
+
+	console.log(book);
 	//book info printed for chosen book
 	//if logged in, borrow()
 	// if not --> ask what do you want to do?

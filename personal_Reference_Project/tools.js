@@ -7,7 +7,10 @@ const uid = new ShortUniqueId({dictionary: "number", length: 5});
 // read db.json
 const getDB = () => {
 	const data = fs.readFileSync("./db.json");
-	return JSON.parse(data.toString());
+	return JSON.parse(data.toString()).map(({published, ...book}) => ({
+		...book,
+		published: new Date(published),
+	}));
 };
 // write- db.update json
 const updateDB = (updatedDB) => {
@@ -59,17 +62,15 @@ const getBookByAuthorAndTitle = (authorName, title) => {
 	const dbObject = getDB();
 	const author = authorName.toString().toLowerCase();
 	const bookTitle = title.toString().toLowerCase();
-	const booksArray = Object.entries(dbObject);
+	const booksArray = dbObject;
 
-	const findExact = (data) => {
-		const [i, book] = data;
+	const findExact = (book) => {
 		return (
 			book.author.toString().toLowerCase().includes(author) &&
 			book.title.toString().toLowerCase().includes(bookTitle)
 		);
 	};
-	const findPartial = (data) => {
-		const [i, book] = data;
+	const findPartial = (book) => {
 		return (
 			book.author.toString().toLowerCase().includes(author) ||
 			book.title.toString().toLowerCase().includes(bookTitle)
@@ -108,12 +109,34 @@ const checkPassword = (userToCheck, n = 0) => {
 //   return userToCheck.password === passwrd ? true : false;
 // };
 
+const isBorrowed = ({borrower_id}) => !borrower_id;
+
+const renderBook = ({published, copies, title, author}) => {
+	const totalCopies = copies.length;
+	const available = copies.filter(isBorrowed).length;
+	const yearPublished = published.getFullYear();
+	return `
+  ${title} by ${author} (${yearPublished})
+    Books in library: ${totalCopies}
+    Available for borrowing: ${available}
+    .... 
+  `;
+};
+
+const pickABook = (books) => {
+	const bookIndex = readlineSync.keyInSelect(books, "pick a book: ");
+	return books[bookIndex];
+};
+
 // function that prints ook details
-const bookDetails = (book) => {
-	const dbObject = getDB();
-	// $ Ulysses by James Joyce (1922)
-	// $ Books in library: 2
-	// $ Available for borrowing: 1
+const searchAndSelectBook = (book) => {
+	// array of results
+	// i.e. list of books
+	const books = getBookByAuthorAndTitle(book, book).map(renderBook);
+
+	if (books.length > 0) {
+		return pickABook(books);
+	}
 };
 
 // function print date
@@ -131,7 +154,7 @@ module.exports = {
 	addUser,
 	getBookByAuthorAndTitle,
 	getBookByISBN,
-	bookDetails,
+	searchAndSelectBook,
 	printDate,
 	checkUserInfo,
 	checkPassword,
