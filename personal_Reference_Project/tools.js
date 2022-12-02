@@ -25,6 +25,7 @@ const updateUsers = (updatedUsers) => {
 };
 
 //function to add new users to users.json
+
 const addUser = (name, password) => {
   const users = getUsers();
   const newUser = {
@@ -37,6 +38,7 @@ const addUser = (name, password) => {
 
   users.push(newUser);
   updateUsers(users);
+  return checkUserInfo(newUser.id);
 };
 
 // Function returns book by isbn code - else return null

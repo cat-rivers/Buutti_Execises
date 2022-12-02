@@ -80,17 +80,46 @@ const logIn = (state, n = 0) => {
   }
 };
 
-const signup = (state) => {};
+const signup = (state) => {
+  const userName = readlineSync.question("Input your name: \n");
+
+  const newPassword = () => {
+    const userPassword = readlineSync.question("Input new password: \n", {
+      hideEchoBack: true,
+    });
+    const userPasswordConfirm = readlineSync.question(
+      "Input new password: \n",
+      {
+        hideEchoBack: true,
+      }
+    );
+    if (userPassword === userPasswordConfirm) {
+      const user = tools.addUser(userName, userPassword);
+      console.log(`
+      Password matches.
+      Your account is now created.
+      your ID is ${user.id}
+      Store your ID number in a safe place.
+      You can now login.
+      `);
+    } else {
+      console.log("Password does not match.");
+      newPassword();
+    }
+  };
+  newPassword();
+  return state;
+};
 
 const commandList = {
   help: help,
   search: () => console.log("search by Id or name"),
   exit: process.exit,
   login: logIn,
-  signup: "signup()",
+  signup: signup,
   borrow: "borrowBook()",
   return: "returnBook()",
-  list: "printList()",
+  list: () => console.log(LoggedUser),
   change_name: "changeName()",
   remove_account: "deleteAccount()",
   logout: (state) => ({...state, loggedIn: false}),
