@@ -111,51 +111,57 @@ const signup = (state) => {
 	return state;
 };
 
-const listBooksBorroewd = () => {
+const listBooksBorrowed = (state) => {
+	console.log(state);
 	//filter db for books with borrower_id
 	//matching loggedUser.id
 	//return books as numbered array
+	return state;
 };
 
-const borrowBook = () => {
+const borrowBook = (state) => {
+	console.log(state);
 	//getBookByAuthorAndTitle()
 	//bookDetails()
 	//change boook status to borrowed,
 	// push borrower ID to userID
 	//update db.json
+	return state;
 };
-const searchBook = () => {
+const searchBook = (state) => {
+	console.log(state);
+	const userSearchWord = readlineSync.question(
+		"Search for a book to borrow:\n"
+	);
+	console.log(tools.getBookByAuthorAndTitle(userSearchWord, userSearchWord));
 	//find book by name
 	// bookInfo()
 	//choose book by number(index? )
 	//book info printed for chosen book
 	//if logged in, borrow()
 	// if not --> ask what do you want to do?
+	return state;
 };
 
-const returnBook = () => {
+const returnBook = (state) => {
+	console.log(state);
 	//List borroewd books(listBooksBorrowed())
 	// choose number of book to return(index?)
 	//control for invalid input
 	// Return the book (update info in db.json )
 	//update info in user info
+	return state;
 };
 
 const commandList = {
 	help: help,
-	search: () => {
-		console.log("search by Id or name");
-		return state;
-	},
+	search: searchBook,
 	exit: process.exit,
 	login: logIn,
 	signup: signup,
-	borrow: "borrowBook()",
-	return: "returnBook()",
-	list: () => {
-		console.log(LoggedUser);
-		return state;
-	},
+	borrow: borrowBook,
+	return: returnBook,
+	list: listBooksBorrowed,
 	change_name: "changeName()",
 	remove_account: "deleteAccount()",
 	logout: (state) => ({...state, loggedIn: false}),
