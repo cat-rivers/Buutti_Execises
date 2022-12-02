@@ -100,7 +100,7 @@ const signup = (state) => {
       Your account is now created.
       your ID is ${user.id}
       Store your ID number in a safe place.
-      You can now login.
+      Inout 'login' to login into your account.
       `);
 		} else {
 			console.log("Password does not match.");
@@ -109,6 +109,36 @@ const signup = (state) => {
 	};
 	newPassword();
 	return state;
+};
+
+const listBooksBorroewd = () => {
+	//filter db for books with borrower_id
+	//matching loggedUser.id
+	//return books as numbered array
+};
+
+const borrowBook = () => {
+	//getBookByAuthorAndTitle()
+	//bookDetails()
+	//change boook status to borrowed,
+	// push borrower ID to userID
+	//update db.json
+};
+const searchBook = () => {
+	//find book by name
+	// bookInfo()
+	//choose book by number(index? )
+	//book info printed for chosen book
+	//if logged in, borrow()
+	// if not --> ask what do you want to do?
+};
+
+const returnBook = () => {
+	//List borroewd books(listBooksBorrowed())
+	// choose number of book to return(index?)
+	//control for invalid input
+	// Return the book (update info in db.json )
+	//update info in user info
 };
 
 const commandList = {
@@ -122,7 +152,10 @@ const commandList = {
 	signup: signup,
 	borrow: "borrowBook()",
 	return: "returnBook()",
-	list: () => console.log(LoggedUser),
+	list: () => {
+		console.log(LoggedUser);
+		return state;
+	},
 	change_name: "changeName()",
 	remove_account: "deleteAccount()",
 	logout: (state) => ({...state, loggedIn: false}),
