@@ -31,7 +31,30 @@ function loggedInList() {
   }
 }
 
-const logIn = (state) => {
+// const logIn = (state) => {
+//   let idCorrect = false;
+
+//   const id = readlineSync.question("Type your ID number to login: ");
+//   const user = tools.checkUserInfo(id);
+
+//   if (user) {
+//     idCorrect = true;
+//     console.log("Account found");
+
+//     if (tools.checkPassword(user.password)) {
+//       console.log(`Welcome, ${user["name"]}`);
+//       LoggedUser = user;
+//       return {...state, loggedIn: true};
+//     } else {
+//       return {...state, loggedIn: false};
+//     }
+//   } else {
+//     console.log("Id not found. try again");
+//     return logIn(state);
+//   }
+// };
+
+const logIn = (state, n = 0) => {
   let idCorrect = false;
 
   const id = readlineSync.question("Type your ID number to login: ");
@@ -49,8 +72,11 @@ const logIn = (state) => {
       return {...state, loggedIn: false};
     }
   } else {
-    console.log("Id not found. try again");
-    return logIn(state);
+    while (n < 3) {
+      console.log("Id not found. try again");
+      return logIn(state, n + 1);
+    }
+    return state;
   }
 };
 
