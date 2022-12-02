@@ -1,100 +1,129 @@
-// const readlineSync = require("readline-sync");
-// const tools = require("./tools.js");
-// let loggedIn = false;
+const readlineSync = require("readline-sync");
+const tools = require("./tools.js");
+let loggedIn = false;
+let LoggedUser;
 
-// function exitLibrary() {
-//   process.stdout.write("Goodbye!");
-//   process.exit();
-// }
+const exitLibrary = () => {
+	process.stdout.write("Goodbye!");
+	process.exit();
+};
 
-// const getCommand = (input) => {
-//   const strInput = input.toString();
-//   commandList[strInput]();
-// };
+const getCommand = (input) => {
+	const strInput = input.toString();
+	commandList[strInput]();
+};
 
-// function help(state) {
-//   state.loggedIn ? loggedInList() : loggedOutList();
-//   return state;
-// }
+const help = (state) => {
+	state.loggedIn ? loggedInList() : loggedOutList();
+	return state;
+};
 
-// function loggedOutList() {
-//   let i = 0;
-//   while (i <= 4) {
-//     process.stdout.write(`${Object.keys(commandList)[i]}\n`);
-//     i++;
-//   }
-// }
-// function loggedInList() {
-//   for (key of Object.keys(commandList)) {
-//     process.stdout.write(`${key}\n`);
-//   }
-// }
+const loggedOutList = () => {
+	let i = 0;
+	while (i <= 4) {
+		process.stdout.write(`${Object.keys(commandList)[i]}\n`);
+		i++;
+	}
+};
+const loggedInList = () => {
+	for (key of Object.keys(commandList)) {
+		process.stdout.write(`${key}\n`);
+	}
+};
 
-// const logIn = (state) => {
-//   let idCorrect = false;
+const logIn = (state, n = 0) => {
+	let idCorrect = false;
 
-//   const id = readlineSync.question("Type your ID number: ", {
-//     hideEchoBack: false,
-//   });
-//   const user = tools.checkUserInfo(id);
-//   if (user) {
-//     idCorrect = true;
-//     const password = readlineSync.question("type password: ", {
-//       hideEchoBack: true,
-//     });
-//     if (tools.checkPassword(password, user)) {
-//       return {...state, loggedIn: true};
-//     } else {
-//       console.log("wrong password");
-//       return {...state};
-//     }
+	const id = readlineSync.question("Type your ID number to login: ");
+	const user = tools.checkUserInfo(id);
 
-//     // if (password === user.password) {
-//     //   return {...state, loggedIn: true};
-//     // } else {
-//     //   console.log("wrong password");
-//     //   return {...state};
-//     // }
-//   } else {
-//     console.log("Wrong id. type 'help'");
-//     return {...state, loggedIn: false};
-//   }
-// };
+	if (user) {
+		idCorrect = true;
+		console.log("Account found");
 
-// const commandList = {
-//   help: help,
-//   search: () => console.log("search by Id or name"),
-//   exit: process.exit,
-//   login: logIn,
-//   signup: "signup()",
-//   borrow: "borrowBook()",
-//   return: "returnBook()",
-//   list: "printList()",
-//   change_name: "changeName()",
-//   remove_account: "deleteAccount()",
-//   logout: (state) => ({...state, loggedIn: false}),
-// };
+		if (tools.checkPassword(user.password)) {
+			console.log(`Welcome, ${user["name"]}`);
+			LoggedUser = user;
+			return {...state, loggedIn: true};
+		} else {
+			return {...state, loggedIn: false};
+		}
+	} else {
+		while (n < 3) {
+			console.log("Id not found. try again");
+			return logIn(state, n + 1);
+		}
+		return state;
+	}
+};
 
-// const greeting = `
-// Welcome to Cats Library of Tech Books!.
-// `;
-// const prompt =
-//   "What would you like to do?\nGet the list of available commands by typing 'help'.";
+const signup = (state) => {
+	const userName = readlineSync.question("Input your name: \n");
 
-// const startApp = () => {
-//   // start the UI loop
+	const newPassword = () => {
+		const userPassword = readlineSync.question("Input new password: \n", {
+			hideEchoBack: true,
+		});
+		const userPasswordConfirm = readlineSync.question(
+			"Input new password: \n",
+			{
+				hideEchoBack: true,
+			}
+		);
+		if (userPassword === userPasswordConfirm) {
+			const user = tools.addUser(userName, userPassword);
+			console.log(`
+      Password matches.
+      Your account is now created.
+      your ID is ${user.id}
+      Store your ID number in a safe place.
+      You can now login.
+      `);
+		} else {
+			console.log("Password does not match.");
+			newPassword();
+		}
+	};
+	newPassword();
+	return state;
+};
 
-//   let state = {loggedIn: false};
+const commandList = {
+	help: help,
+	search: () => console.log("search by Id or name"),
+	exit: process.exit,
+	login: logIn,
+	signup: signup,
+	borrow: "borrowBook()",
+	return: "returnBook()",
+	list: () => console.log(LoggedUser),
+	change_name: "changeName()",
+	remove_account: "deleteAccount()",
+	logout: (state) => ({...state, loggedIn: false}),
+};
 
-//   console.log(greeting);
+const greeting = `
+Welcome to Cats Library of Tech Books!.
+`;
+const prompt =
+	"What would you like to do?\nGet the list of available commands by typing 'help'.";
 
-//   while (true) {
-//     console.log(state);
+const startApp = () => {
+	// start the UI loop
 
-//     const commandName = readlineSync.question(prompt);
+	let state = {loggedIn: false};
 
-//     state = commandList[commandName] ? commandList[commandName](state) : state;
-//   }
-// };
+	console.log(greeting);
 
-// startApp();
+	while (true) {
+		console.log(state);
+
+		const commandName = readlineSync.question(prompt);
+
+		state = commandList[commandName]
+			? commandList[commandName](state)
+			: state;
+	}
+};
+
+startApp();

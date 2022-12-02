@@ -23,8 +23,10 @@
 - const exitLibrary
 - const help
 - const getCommand
-- function loggedOutList
-- function loggedInList
-- checkPassword
+- const loggedOutList
+- const loggedInList
+- const checkPassword
+- const addUser
+- const signup
 
 ```
