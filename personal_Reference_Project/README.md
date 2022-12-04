@@ -28,5 +28,13 @@
 - const checkPassword
 - const addUser
 - const signup
+- const renderBook
+- const saveUser
+- const isBorrowable
+- const updateCopy
+- const borrowCopy
+- const borrowBook
+- searchBook
+
 
 ```

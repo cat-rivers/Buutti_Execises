@@ -53,9 +53,9 @@
         "copies": [
             {
                 "id": "1",
-                "status": "in_library",
-                "borrower_id": null,
-                "due_date": null
+                "status": "borrowed",
+                "borrower_id": "24010",
+                "due_date": "2022-12-17T18:17:08.724Z"
             }
         ],
         "published": "2012-07-01T00:00:00.000Z"

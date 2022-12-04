@@ -1,35 +1,34 @@
 const readlineSync = require("readline-sync");
 const tools = require("./tools.js");
-let loggedIn = false;
-let LoggedUser;
+const colors = require("colors");
 
-const exitLibrary = () => {
+function exitLibrary() {
 	process.stdout.write("Goodbye!");
 	process.exit();
-};
+}
 
 const getCommand = (input) => {
 	const strInput = input.toString();
 	commandList[strInput]();
 };
 
-const help = (state) => {
+function help(state) {
 	state.loggedIn ? loggedInList() : loggedOutList();
 	return state;
-};
+}
 
-const loggedOutList = () => {
+function loggedOutList() {
 	let i = 0;
 	while (i <= 4) {
 		process.stdout.write(`${Object.keys(commandList)[i]}\n`);
 		i++;
 	}
-};
-const loggedInList = () => {
+}
+function loggedInList() {
 	for (key of Object.keys(commandList)) {
 		process.stdout.write(`${key}\n`);
 	}
-};
+}
 
 const logIn = (state, n = 0) => {
 	let idCorrect = false;
@@ -43,8 +42,7 @@ const logIn = (state, n = 0) => {
 
 		if (tools.checkPassword(user.password)) {
 			console.log(`Welcome, ${user["name"]}`);
-			LoggedUser = user;
-			return {...state, loggedIn: true};
+			return {...state, user, loggedIn: true};
 		} else {
 			return {...state, loggedIn: false};
 		}
@@ -77,7 +75,7 @@ const signup = (state) => {
       Your account is now created.
       your ID is ${user.id}
       Store your ID number in a safe place.
-      You can now login.
+      Inout 'login' to login into your account.
       `);
 		} else {
 			console.log("Password does not match.");
@@ -88,15 +86,89 @@ const signup = (state) => {
 	return state;
 };
 
+const listBooksBorrowed = (state) => {
+	console.log(state);
+	//filter db for books with borrower_id
+	//matching loggedUser.id
+	//return books as numbered array
+	return state;
+};
+
+const twoWeeksFromNow = () => {
+	const a = new Date(2000, 1, 1);
+	const b = new Date(2000, 1, 14);
+	return new Date(Number(new Date()) + (b - a));
+};
+
+const updateCopy = (copy, userId) => ({
+	...copy,
+	status: "borrowed",
+	borrower_id: userId,
+	due_date: twoWeeksFromNow().toISOString(),
+});
+
+const borrowCopy = (book, userId) => {
+	console.log(tools.renderBook(book));
+	console.log("Thank you for Borrowing.\nRemember to return in 2 weeks");
+	const copyIndex = book.copies.findIndex((copy) => !copy.borrower_id);
+	return {
+		...book,
+		copies: book.copies.map((copy, index) =>
+			index === copyIndex ? updateCopy(copy, userId) : copy
+		),
+	};
+};
+
+const borrowBook = (state, bookToBorrow) => {
+	return {
+		...state,
+		user: {
+			...state.user,
+			books: [...state.user.books, bookToBorrow.isbn],
+			books_history: [...state.user.books_history, bookToBorrow.isbn],
+		},
+		books: state.books.map((book) => {
+			return book.isbn === bookToBorrow.isbn
+				? borrowCopy(bookToBorrow, state.user.id)
+				: book;
+		}),
+	};
+};
+const searchBook = (state) => {
+	const userSearchWord = readlineSync.question(
+		"Search for a book to borrow:\n"
+	);
+	const book = tools.searchAndSelectBook(state, userSearchWord);
+
+	return state.loggedIn && tools.isBorrowable(book)
+		? readlineSync.keyInYN("Would you like to borrow this book?\n")
+			? borrowBook(state, book)
+			: state
+		: state;
+};
+
+const returnBook = (state) => {
+	//List borroewd books(listBooksBorrowed())
+	// choose number of book to return(index?)
+	//control for invalid input
+	// Return the book (update info in db.json )
+	//update info in user info
+	return state;
+};
+
 const commandList = {
 	help: help,
-	search: () => console.log("search by Id or name"),
-	exit: process.exit,
+	search: searchBook,
+	exit: (state) => {
+		tools.updateDB(state);
+		tools.saveUser(state.user);
+		process.exit();
+	},
 	login: logIn,
 	signup: signup,
-	borrow: "borrowBook()",
-	return: "returnBook()",
-	list: () => console.log(LoggedUser),
+	borrow: borrowBook,
+	return: returnBook,
+	list: listBooksBorrowed,
 	change_name: "changeName()",
 	remove_account: "deleteAccount()",
 	logout: (state) => ({...state, loggedIn: false}),
@@ -111,13 +183,14 @@ const prompt =
 const startApp = () => {
 	// start the UI loop
 
-	let state = {loggedIn: false};
+	let state = {
+		loggedIn: false,
+		books: tools.getDB(),
+	};
 
 	console.log(greeting);
 
 	while (true) {
-		console.log(state);
-
 		const commandName = readlineSync.question(prompt);
 
 		state = commandList[commandName]
