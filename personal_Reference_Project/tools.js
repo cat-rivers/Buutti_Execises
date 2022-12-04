@@ -13,8 +13,8 @@ const getDB = () => {
 	}));
 };
 // write- db.update json
-const updateDB = (updatedDB) => {
-	fs.writeFileSync("./db.json", JSON.stringify(updatedDB));
+const updateDB = (state) => {
+	fs.writeFileSync("./db.json", JSON.stringify(state.books, null, 4));
 };
 
 // Read users.json
@@ -22,6 +22,15 @@ const getUsers = () => {
 	const data = fs.readFileSync("./users.json");
 	return JSON.parse(data.toString());
 };
+
+const saveUser = (userToSave) => {
+	const users = getUsers();
+	const updated = users.map((user) =>
+		user.id === userToSave.id ? userToSave : user
+	);
+	fs.writeFileSync("./users.json", JSON.stringify(updated, null, 4));
+};
+
 // write-update users.json
 const updateUsers = (updatedUsers) => {
 	fs.writeFileSync("./users.json", JSON.stringify(updatedUsers));
@@ -58,11 +67,9 @@ const getBookByISBN = (isbn) => {
 };
 
 // This function will return book either if there is an exact match, or a partial one.
-const getBookByAuthorAndTitle = (authorName, title) => {
-	const dbObject = getDB();
+const getBookByAuthorAndTitle = (state, authorName, title) => {
 	const author = authorName.toString().toLowerCase();
 	const bookTitle = title.toString().toLowerCase();
-	const booksArray = dbObject;
 
 	const findExact = (book) => {
 		return (
@@ -76,9 +83,9 @@ const getBookByAuthorAndTitle = (authorName, title) => {
 			book.title.toString().toLowerCase().includes(bookTitle)
 		);
 	};
-	const exactMatch = booksArray.filter(findExact);
+	const exactMatch = state.books.filter(findExact);
 
-	return exactMatch.length > 0 ? exactMatch : booksArray.filter(findPartial);
+	return exactMatch.length > 0 ? exactMatch : state.books.filter(findPartial);
 };
 
 // const checkUserInfo = (idNum) => {
@@ -111,9 +118,12 @@ const checkPassword = (userToCheck, n = 0) => {
 
 const isBorrowed = ({borrower_id}) => !borrower_id;
 
+const bookAvailableCopies = ({copies}) => copies.filter(isBorrowed).length;
+const isBorrowable = (book) => 0 < bookAvailableCopies(book);
+
 const renderBook = ({published, copies, title, author}) => {
 	const totalCopies = copies.length;
-	const available = copies.filter(isBorrowed).length;
+	const available = bookAvailableCopies({copies});
 	const yearPublished = published.getFullYear();
 	return `
   ${title} by ${author} (${yearPublished})
@@ -124,15 +134,20 @@ const renderBook = ({published, copies, title, author}) => {
 };
 
 const pickABook = (books) => {
-	const bookIndex = readlineSync.keyInSelect(books, "pick a book: ");
-	return books[bookIndex];
+	const bookIndex = readlineSync.keyInSelect(
+		books.map(renderBook),
+		"pick a book: "
+	);
+	const selectedBook = books[bookIndex];
+	console.log(renderBook(selectedBook));
+	return selectedBook;
 };
 
 // function that prints ook details
-const searchAndSelectBook = (book) => {
+const searchAndSelectBook = (state, book) => {
 	// array of results
 	// i.e. list of books
-	const books = getBookByAuthorAndTitle(book, book).map(renderBook);
+	const books = getBookByAuthorAndTitle(state, book, book);
 
 	if (books.length > 0) {
 		return pickABook(books);
@@ -158,4 +173,7 @@ module.exports = {
 	printDate,
 	checkUserInfo,
 	checkPassword,
+	isBorrowable,
+	saveUser,
+	renderBook,
 };

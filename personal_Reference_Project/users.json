@@ -1,94 +1,108 @@
 [
-  {
-    "name": "Rene Orosz",
-    "password": "hunter12",
-    "id": 12345678,
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "catalina",
-    "password": "foobar",
-    "id": "function () { [native code] }",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "roberto",
-    "password": "foodfsfdsbar",
-    "id": "function () { [native code] }",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "Toni",
-    "password": "fdsf",
-    "id": "function () { [native code] }",
-    "books": [],
-    "books_history": []
-  },
-  {"name": "catalina", "password": "foobar", "books": [], "books_history": []},
-  {
-    "name": "roberto",
-    "password": "foodfsfdsbar",
-    "books": [],
-    "books_history": []
-  },
-  {"name": "Toni", "password": "fdsf", "books": [], "books_history": []},
-  {
-    "name": "catalina",
-    "password": "foobar",
-    "id": "76508",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "roberto",
-    "password": "foodfsfdsbar",
-    "id": "33019",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "Toni",
-    "password": "fdsf",
-    "id": "96594",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "catalina",
-    "password": "cata",
-    "id": "67491",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "catalina",
-    "password": "foo",
-    "id": "33351",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "cata",
-    "password": "foo",
-    "id": "48116",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "Beni",
-    "password": "foo",
-    "id": "96629",
-    "books": [],
-    "books_history": []
-  },
-  {
-    "name": "santi",
-    "password": "foo",
-    "id": "24010",
-    "books": [],
-    "books_history": []
-  }
+    {
+        "name": "Rene Orosz",
+        "password": "hunter12",
+        "id": 12345678,
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "catalina",
+        "password": "foobar",
+        "id": "function () { [native code] }",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "roberto",
+        "password": "foodfsfdsbar",
+        "id": "function () { [native code] }",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "Toni",
+        "password": "fdsf",
+        "id": "function () { [native code] }",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "catalina",
+        "password": "foobar",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "roberto",
+        "password": "foodfsfdsbar",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "Toni",
+        "password": "fdsf",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "catalina",
+        "password": "foobar",
+        "id": "76508",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "roberto",
+        "password": "foodfsfdsbar",
+        "id": "33019",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "Toni",
+        "password": "fdsf",
+        "id": "96594",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "catalina",
+        "password": "cata",
+        "id": "67491",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "catalina",
+        "password": "foo",
+        "id": "33351",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "cata",
+        "password": "foo",
+        "id": "48116",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "Beni",
+        "password": "foo",
+        "id": "96629",
+        "books": [],
+        "books_history": []
+    },
+    {
+        "name": "santi",
+        "password": "foo",
+        "id": "24010",
+        "books": [
+            "9781593275846"
+        ],
+        "books_history": [
+            "9781593275846"
+        ]
+    }
 ]

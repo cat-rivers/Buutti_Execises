@@ -1,7 +1,6 @@
 const readlineSync = require("readline-sync");
 const tools = require("./tools.js");
-let loggedIn = false;
-let LoggedUser;
+const colors = require("colors");
 
 function exitLibrary() {
 	process.stdout.write("Goodbye!");
@@ -66,8 +65,7 @@ const logIn = (state, n = 0) => {
 
 		if (tools.checkPassword(user.password)) {
 			console.log(`Welcome, ${user["name"]}`);
-			LoggedUser = user;
-			return {...state, loggedIn: true};
+			return {...state, user, loggedIn: true};
 		} else {
 			return {...state, loggedIn: false};
 		}
@@ -119,31 +117,60 @@ const listBooksBorrowed = (state) => {
 	return state;
 };
 
-const borrowBook = (state) => {
-	console.log(state);
-	//getBookByAuthorAndTitle()
-	//bookDetails()
-	//change boook status to borrowed,
-	// push borrower ID to userID
-	//update db.json
-	return state;
+const twoWeeksFromNow = () => {
+	const a = new Date(2000, 1, 1);
+	const b = new Date(2000, 1, 14);
+	return new Date(Number(new Date()) + (b - a));
+};
+
+const updateCopy = (copy, userId) => ({
+	...copy,
+	status: "borrowed",
+	borrower_id: userId,
+	due_date: twoWeeksFromNow().toISOString(),
+});
+
+const borrowCopy = (book, userId) => {
+	console.log(tools.renderBook(book));
+	console.log("Thank you for Borrowing.\nRemember to return in 2 weeks");
+	const copyIndex = book.copies.findIndex((copy) => !copy.borrower_id);
+	return {
+		...book,
+		copies: book.copies.map((copy, index) =>
+			index === copyIndex ? updateCopy(copy, userId) : copy
+		),
+	};
+};
+
+const borrowBook = (state, bookToBorrow) => {
+	return {
+		...state,
+		user: {
+			...state.user,
+			books: [...state.user.books, bookToBorrow.isbn],
+			books_history: [...state.user.books_history, bookToBorrow.isbn],
+		},
+		books: state.books.map((book) => {
+			return book.isbn === bookToBorrow.isbn
+				? borrowCopy(bookToBorrow, state.user.id)
+				: book;
+		}),
+	};
 };
 const searchBook = (state) => {
-	console.log(state);
 	const userSearchWord = readlineSync.question(
 		"Search for a book to borrow:\n"
 	);
-	const book = tools.searchAndSelectBook(userSearchWord);
+	const book = tools.searchAndSelectBook(state, userSearchWord);
 
-	console.log(book);
-	//book info printed for chosen book
-	//if logged in, borrow()
-	// if not --> ask what do you want to do?
-	return state;
+	return state.loggedIn && tools.isBorrowable(book)
+		? readlineSync.keyInYN("Would you like to borrow this book?\n")
+			? borrowBook(state, book)
+			: state
+		: state;
 };
 
 const returnBook = (state) => {
-	console.log(state);
 	//List borroewd books(listBooksBorrowed())
 	// choose number of book to return(index?)
 	//control for invalid input
@@ -155,7 +182,11 @@ const returnBook = (state) => {
 const commandList = {
 	help: help,
 	search: searchBook,
-	exit: process.exit,
+	exit: (state) => {
+		tools.updateDB(state);
+		tools.saveUser(state.user);
+		process.exit();
+	},
 	login: logIn,
 	signup: signup,
 	borrow: borrowBook,
@@ -175,13 +206,14 @@ const prompt =
 const startApp = () => {
 	// start the UI loop
 
-	let state = {loggedIn: false};
+	let state = {
+		loggedIn: false,
+		books: tools.getDB(),
+	};
 
 	console.log(greeting);
 
 	while (true) {
-		console.log(state);
-
 		const commandName = readlineSync.question(prompt);
 
 		state = commandList[commandName]
