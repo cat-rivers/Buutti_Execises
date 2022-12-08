@@ -1,0 +1,30 @@
+.container {
+	display: flex;
+	flex-direction: row;
+	/* height: 125px; */
+	justify-content: space-around;
+}
+
+.container div {
+	background-color: rgb(152, 227, 152);
+	width: 100px;
+	height: 125px;
+	border: 0.5px solid black;
+}
+
+.container2 {
+	display: flex;
+	flex-direction: row;
+	height: 100px;
+	width: 100%;
+}
+
+.container2 div {
+	background-color: rgb(231, 71, 116);
+	height: 100px;
+	border: 0.5px solid black;
+	width: 200px;
+}
+.item-2 {
+	flex-grow: 2;
+}
