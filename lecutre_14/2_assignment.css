@@ -1,0 +1,33 @@
+.container-1 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+}
+
+.container-1 div {
+	height: 100px;
+	background-color: rgb(216, 63, 96);
+	border: 0.5px solid black;
+}
+
+.container-2 {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	grid-template-rows: 1fr 1fr 1.5fr;
+}
+
+.container-2 div {
+	min-height: 100px;
+	background-color: rgb(72, 226, 169);
+	border: 0.5px solid black;
+}
+
+.item-1 {
+	grid-column-start: span 3;
+}
+.item-2 {
+	grid-row-start: 2;
+	grid-row-end: 4;
+}
+.item-5 {
+	height: 100px;
+}
