@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>HTML Playground</title>
+		<link rel="stylesheet" href="3_assignment.css" />
+	</head>
+	<body>
+		<div class="header">
+			<h1 class="page-header">
+				Welcome to my
+				<span>HTML</span>
+				Playground
+			</h1>
+		</div>
+
+		<div class="pictures">
+			<img
+				src="https://images.unsplash.com/photo-1532117364815-720cd35ff6e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+				alt=""
+			/>
+			<img
+				src="https://images.unsplash.com/photo-1571506165871-ee72a35bc9d4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80"
+				alt=""
+			/>
+			<img
+				src="https://images.unsplash.com/photo-1521133573892-e44906baee46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=387&q=80"
+				alt=""
+			/>
+		</div>
+
+		<div class="lists">
+			<ul>
+				<li>Sour Apple</li>
+				<li>Raspberry</li>
+				<li>Watermelon</li>
+			</ul>
+			<ul>
+				<li>Rose Water</li>
+				<li>Lavender</li>
+				<li>Praline</li>
+			</ul>
+			<ul>
+				<li>Blue Crystal</li>
+				<li>Pink Agatha</li>
+				<li>White Quartz</li>
+			</ul>
+		</div>
+
+		<div class="table">
+			<h1>Candy Statistics</h1>
+			<table>
+				<thead>
+					<th>Product/units</th>
+					<th>Lollipops</th>
+					<th>Macaroons</th>
+					<th>Rock Candy</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>2020</td>
+						<td>3050</td>
+						<td>4780</td>
+						<td>2300</td>
+					</tr>
+					<tr>
+						<td>2021</td>
+						<td>4050</td>
+						<td>6780</td>
+						<td>3300</td>
+					</tr>
+					<tr>
+						<td>2022</td>
+						<td>7050</td>
+						<td>10780</td>
+						<td>8300</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+
+		<div class="candy-form">
+			<h2>Candy Ordering Form</h2>
+			<form action="javascript:orderCandy()">
+				<label for="name">Full name:</label>
+
+				<input type="text" id="fname" name="fname" value="Jane Doe" />
+				<br />
+
+				<br />
+
+				<label for="lollipop-qty">Qty of Lollipops</label>
+				<br />
+				<input
+					type="number"
+					name="lollipop-qty"
+					id="lollipop-qty"
+					value="0"
+				/>
+				<br />
+				<br />
+
+				<label for="macaroons-qty">Qty of Macaroons</label>
+				<br />
+				<input
+					type="number"
+					name="macaroons-qty"
+					id="macaroons-qty"
+					value="0"
+				/>
+				<br />
+				<br />
+				<label for="rockCandy-qty">Qty of Rock Candy</label>
+				<br />
+				<input
+					<input
+					type="number"
+					name="rockCandy-qty"
+					id="rockCandy-qty"
+					value="0"
+				/>
+
+				<input type="submit" value="Submit" />
+			</form>
+		</div>
+	</body>
+</html>

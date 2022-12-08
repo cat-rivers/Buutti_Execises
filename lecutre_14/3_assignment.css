@@ -1,0 +1,92 @@
+body {
+	font-family: "Courier New", Courier, monospace;
+	background-color: rgb(190, 190, 243, 0.5);
+}
+
+.header {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+}
+.header span {
+	background-color: aqua;
+	padding: 15px;
+}
+
+.page-header {
+	background-color: rgb(255, 192, 203, 0.7);
+	padding: 15px;
+	border-radius: 10px;
+	color: rgb(51, 47, 50);
+}
+
+.pictures {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-items: center;
+}
+
+img {
+	margin-top: 25px;
+	height: 200px;
+	width: 200px;
+	border-radius: 50%;
+	border: 3px rgb(246, 109, 207, 0.5) solid;
+}
+
+.lists {
+	width: 98%;
+	display: grid;
+	margin: 25px 0px;
+	grid-template-columns: 1fr 1fr 1fr;
+	justify-items: center;
+	background-color: rgb(163, 163, 233, 0.7);
+	border-radius: 10px;
+	grid-column-gap: 5px;
+}
+
+.lists ul {
+	display: grid;
+	width: 50%;
+	text-align: center;
+	list-style: none;
+	font-size: 20px;
+}
+
+li {
+	margin: 10px;
+	font-size: larger;
+}
+
+.table {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+table {
+	width: 80%;
+	border: 0.5px rgb(79, 47, 67, 0.5) solid;
+	border-radius: 5px;
+
+	background-color: rgba(253, 213, 235, 0.7);
+	text-align: center;
+	box-shadow: 3px 3px 5px rgba(124, 63, 248, 0.5);
+}
+td:nth-child(1) {
+	text-align: left;
+	font-weight: bold;
+}
+.table h1 {
+	text-shadow: 2px 2px rgb(236, 227, 234);
+}
+
+td,
+tr,
+th {
+	border: 0.5px solid rgb(79, 47, 67, 0.5);
+	border-radius: 3px;
+}
+
+th {
+	background-color: rgba(239, 157, 218, 0.5);
+}
