@@ -1,0 +1,21 @@
+.title {
+	color: fuchsia;
+	text-shadow: 2px 3px 1px white;
+}
+.container {
+	height: 100%;
+	background-color: black;
+	padding: 3rem;
+}
+
+.icon-div {
+	background-color: rgb(128, 23, 60);
+	border-radius: 20px;
+	outline: 5px dashed rgb(167, 11, 167);
+}
+
+.icon-div p {
+	color: white;
+	font-weight: 400;
+	font-size: larger;
+}
