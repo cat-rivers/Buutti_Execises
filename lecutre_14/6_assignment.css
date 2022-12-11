@@ -19,3 +19,7 @@
 	font-weight: 400;
 	font-size: larger;
 }
+
+.icon-div img {
+	border-radius: 15%;
+}
