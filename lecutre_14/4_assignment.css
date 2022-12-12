@@ -1,1 +1,6 @@
 
+.book-display p {
+    border-bottom: 0.5px solid rgba(132, 124, 124, 0.381);
+    padding-bottom: 1rem;
+    
+}
