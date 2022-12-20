@@ -13,24 +13,30 @@ const form = document.getElementById("bookForm");
 const bookList = document.getElementById("bookList");
 form.addEventListener("submit", addBookToList);
 
-function newObject(bookName, Bookpages) {
-	const newBook = {name: bookName, pageCount: Bookpages};
-	books.push(newBook);
-	return newBook;
-}
-
-function appendBook(array) {
-	const i = array.length - 1;
-	const newP = document.createElement("p");
-	newP.innerHTML = `${array[i].name} (${array[i].pageCount}) `;
-	bookList.appendChild(newP);
-}
-
 function addBookToList(e) {
 	console.log("hello");
 	e.preventDefault();
-	const bookName = document.getElementById("bookName");
-	const pageCount = document.getElementById("pageCount");
-	const newBook = newObject(bookName.value, pageCount.value);
-	appendBook(books);
+	const bookName = document.getElementById("bookName").value;
+	const pageCount = document.getElementById("pageCount").value;
+	books.push({pageCount, name: bookName});
+	renderBooks();
+}
+
+function renderBook({pageCount, name}) {
+	const newP = document.createElement("p");
+	newP.innerHTML = `${name} (${pageCount})`;
+	return newP;
+}
+
+function removeAllChildNodes(parent) {
+	while (parent.firstChild) {
+		parent.removeChild(parent.firstChild);
+	}
+}
+
+function renderBooks() {
+	removeAllChildNodes(bookList);
+	books.map(renderBook).forEach((node) => {
+		bookList.appendChild(node);
+	});
 }
