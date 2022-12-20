@@ -19,9 +19,10 @@ function newObject(bookName, Bookpages) {
 	return newBook;
 }
 
-function appendBook(book) {
+function appendBook(array) {
+	const i = array.length - 1;
 	const newP = document.createElement("p");
-	newP.innerHTML = `${book.name} (${book.pageCount}) `;
+	newP.innerHTML = `${array[i].name} (${array[i].pageCount}) `;
 	bookList.appendChild(newP);
 }
 
@@ -31,5 +32,5 @@ function addBookToList(e) {
 	const bookName = document.getElementById("bookName");
 	const pageCount = document.getElementById("pageCount");
 	const newBook = newObject(bookName.value, pageCount.value);
-	appendBook(newBook);
+	appendBook(books);
 }
