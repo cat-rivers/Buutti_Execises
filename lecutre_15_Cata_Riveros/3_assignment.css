@@ -1,0 +1,6 @@
+.newDiv {
+	border: solid blue 1px;
+	border-radius: 15px;
+	padding: 15px;
+	background-color: rgba(89, 125, 232, 0.395);
+}
