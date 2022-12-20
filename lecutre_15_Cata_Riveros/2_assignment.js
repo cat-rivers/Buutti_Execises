@@ -1,15 +1,3 @@
-// get form
-const form = document.getElementById("bookForm");
-const bookList = document.getElementById("bookList");
-
-//get book title.value
-//get page count.value
-//event listener on submit
-form.addEventListener("submit", addBookToList);
-
-//add book to array of objects
-//append to  (HTML) to show in client side
-
 const books = [
 	{
 		name: "Dune",
@@ -21,13 +9,27 @@ const books = [
 	},
 ];
 
-function addBookToList(e) {
-	e.preventDefault();
-	console.log("hello");
-	const bookName = document.getElementById("bookName");
-	const pageCount = document.getElementById("pageCount");
-	console.log(bookName.value);
-	console.log(pageCount.value);
+const form = document.getElementById("bookForm");
+const bookList = document.getElementById("bookList");
+form.addEventListener("submit", addBookToList);
+
+function newObject(bookName, Bookpages) {
+	const newBook = {name: bookName, pageCount: Bookpages};
+	books.push(newBook);
+	return newBook;
 }
 
-addBookToList();
+function appendBook(book) {
+	const newP = document.createElement("p");
+	newP.innerHTML = `${book.name} (${book.pageCount}) `;
+	bookList.appendChild(newP);
+}
+
+function addBookToList(e) {
+	console.log("hello");
+	e.preventDefault();
+	const bookName = document.getElementById("bookName");
+	const pageCount = document.getElementById("pageCount");
+	const newBook = newObject(bookName.value, pageCount.value);
+	appendBook(newBook);
+}
