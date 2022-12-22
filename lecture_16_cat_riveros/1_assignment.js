@@ -43,3 +43,9 @@ function createDelayedCalculation(limit, milliseconds) {
 }
 
 createDelayedCalculation(11, 3000);
+
+//e)--------------------------------
+
+// Because the delay time on the first calculation is
+//2 seconds and the one fter is only 0.5 seconds,
+//thus returning it before the second calculation
