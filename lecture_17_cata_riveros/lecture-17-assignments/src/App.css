@@ -1,0 +1,30 @@
+.r2d2 {
+	display: grid;
+	justify-items: center;
+	color: white;
+	background-color: rgb(67, 67, 194);
+	width: 400px;
+	padding-bottom: 25px;
+	font-size: 1.2rem;
+}
+
+.r2d2 img {
+	margin-top: 25px;
+	width: 90%;
+}
+
+.r2d2 h2 {
+	margin-bottom: 0px;
+}
+
+.tableOfPlanets {
+	width: 40%;
+	border-collapse: collapse;
+}
+
+th,
+td {
+	border: 1px solid;
+	padding: 5px;
+	text-align: center;
+}
