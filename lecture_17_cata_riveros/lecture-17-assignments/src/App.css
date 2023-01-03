@@ -1,3 +1,10 @@
+.container {
+	margin-left: 0px;
+}
+
+.assignment {
+	margin: 20px 0px;
+}
 .r2d2 {
 	display: grid;
 	justify-items: center;
@@ -6,6 +13,7 @@
 	width: 400px;
 	padding-bottom: 25px;
 	font-size: 1.2rem;
+	font-family: "Times New Roman", Times, serif;
 }
 
 .r2d2 img {
@@ -14,7 +22,7 @@
 }
 
 .r2d2 h2 {
-	margin-bottom: 0px;
+	margin: 20px 0px;
 }
 
 .tableOfPlanets {
@@ -27,4 +35,9 @@ td {
 	border: 1px solid;
 	padding: 5px;
 	text-align: center;
+}
+
+.book-display :nth-child(1) {
+	border-bottom: 0.5px solid rgba(132, 124, 124, 0.381);
+	padding-bottom: 1rem;
 }

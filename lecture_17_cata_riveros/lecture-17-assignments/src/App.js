@@ -1,3 +1,5 @@
+import BookListUi from "./bookList";
+
 function App() {
 	const fullname = "Cat Rivers ";
 	const age = 31;
@@ -12,7 +14,7 @@ function App() {
 	function Greetings(props) {
 		return (
 			<div>
-				<h1>Assignment 1 </h1>
+				<h2 className="assignment">Assignment 1 </h2>
 				<p>
 					My name is {props.name} and I am {props.age} years old!
 				</p>
@@ -23,7 +25,7 @@ function App() {
 	function R2D2() {
 		return (
 			<div>
-				<h2> Assignment 2</h2>
+				<h2 className="assignment"> Assignment 2</h2>
 				<div className="r2d2">
 					<img src="./r2d2.jpg" alt="I am R2D2"></img>
 					<h2>Hello, I am R2D2!</h2>
@@ -38,7 +40,7 @@ function App() {
 	function Planets(props) {
 		return (
 			<div>
-				<h2> Assignment 3</h2>
+				<h2 className="assignment"> Assignment 3</h2>
 
 				<table className="tableOfPlanets">
 					<tr>
@@ -56,10 +58,11 @@ function App() {
 	}
 
 	return (
-		<div>
+		<div className="container">
 			<Greetings name={fullname} age={age} />
 			<R2D2 image />
 			<Planets array={planetList} />
+			<BookListUi />
 		</div>
 	);
 }
