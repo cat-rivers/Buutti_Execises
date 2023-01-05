@@ -1,0 +1,20 @@
+.App {
+  text-align: center;
+}
+
+.disappearingButtons{
+  display: flex;
+flex-direction: row;
+justify-content: center;
+}
+
+ button{
+  border-radius: 5px;
+  margin: 10px;
+  padding: 10px;
+  background-color: rgb(192, 173, 241);
+}
+
+ button:hover {
+  background-color: rgb(224, 181, 248);
+}

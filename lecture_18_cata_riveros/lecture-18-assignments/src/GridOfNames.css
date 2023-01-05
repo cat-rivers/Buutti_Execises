@@ -1,0 +1,23 @@
+.row {
+    display: grid;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: repeat(5, 1fr);
+
+    
+}
+
+.row button{
+    height: auto;
+    color: white;
+    font-size: 20px;
+}
+
+.color-red {
+    background-color: rgba(224, 70, 70, 0.905);
+
+}
+
+.color-green {
+    background-color: rgba(64, 234, 160, 0.905);
+
+}
