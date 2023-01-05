@@ -4,19 +4,23 @@ import { useState } from "react";
 
 const ButtonMaker = ({array}) =>{
     
-    const [clicked, setClicked] = useState("color-red");
-	const onClicked = () => {
-		clicked !== "color-red" ? setClicked("color-red") : setClicked("color-green");
+    // clicked is an object that has the name indices
+    // as keys and the value is boolean describing
+    // if the button at the index is clicked
+    const [clicked, setClicked] = useState({});
+	const onClicked = (nameIndex) => {
+		setClicked({...clicked, [nameIndex]: !clicked[nameIndex]})
 	};
-
-	// const colorClass = () => {
-	// 	return !clicked ? "color-red" : "color-green";
-	// };
+    
+    const getClass = (nameIndex) => clicked[nameIndex] || false ? 'color-green' : 'color-red'
 
 	return (
 		<div className="row">
-			{array.map((element) => (
-				<button onClick={onClicked} className={clicked}>
+            {/* <pre>{JSON.stringify(clicked)}</pre> */}
+			{array.map((element,idx) => (
+				<button 
+                    onClick={() => onClicked(idx)} 
+                    className={getClass(idx)}>
 					{element}
 				</button>
 			))}
