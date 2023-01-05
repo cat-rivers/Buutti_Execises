@@ -7,4 +7,5 @@
 - ### `ToggleButton` (assignment 1)
 - ### `DisappearingButtons` (assignment 2)
 - ### `GridOfNames` (assignment 3)
+- ### `ButtonExample` (assignment 3 variation)
 
