@@ -1,35 +1,31 @@
+import {useState} from "react";
+import {Button} from "react-bootstrap";
+import "./App.css";
 
-import { useState } from "react";
-import { Button } from 'react-bootstrap';
-import "./App.css"
+const TodoNote = ({object, id, onCompletionToggle, onChange}) => {
+	const [completed, setCompleted] = useState(object.complete);
+	const [editMode, setEditMode] = useState(false);
 
-
-
-
-const TodoNote = ({object , id , onCompletionToggle, onChange}) => {
-    
-    const [completed, setCompleted] = useState(object.complete)
-    const [editMode, setEditMode] = useState(false)
-    
-    
-    const editModeFalse = () =>{
+	const editModeFalse = () => {
 		return (
 			<>
 				<p className="form-check-label">{object.text}</p>
-				<Button >Edit </Button>
+				<Button onClick={() => setEditMode(true)}>Edit </Button>
 			</>
 		);
-	}
-    
-    const editModeTrue = () => {
-        return (
-            <>
-            <input type="text" placeholder="new text" />
-            </>
-            
-        )
-    }
-    
+	};
+
+	const editModeTrue = () => {
+		return (
+			<>
+				<input type="text" placeholder="new text" />
+				<button onClick={() => setEditMode(false)} name="sumbit">
+					Save
+				</button>
+			</>
+		);
+	};
+
 	return (
 		<div
 			className={
@@ -46,7 +42,7 @@ const TodoNote = ({object , id , onCompletionToggle, onChange}) => {
 						onCompletionToggle(id);
 					}}
 				/>
-				{ !editMode ? editModeFalse() : editModeTrue()}
+				{!editMode ? editModeFalse() : editModeTrue()}
 
 				<Button className="btn-close"></Button>
 			</form>
@@ -54,5 +50,4 @@ const TodoNote = ({object , id , onCompletionToggle, onChange}) => {
 	);
 };
 
-
-export default TodoNote
+export default TodoNote;
