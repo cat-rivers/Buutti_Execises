@@ -2,7 +2,7 @@
     display: grid;
     justify-items: center;
     margin: 15px;
-    background-color: rgb(154, 197, 154);
+    background-color: rgba(216, 230, 237, 0.71);
 
 }
 
@@ -21,4 +21,12 @@ form{
     margin: 5px;
     justify-content: space-between;
 
+}
+
+.color-green{
+    background-color: rgb(163, 228, 163);
+}
+
+.color-red {
+    background-color: rgb(235, 94, 94);
 }

@@ -17,10 +17,19 @@ const App = () =>  {
 
 const [todoList, setTodoList] = useState(defaultTodos)
 
+const toggleCompletion = (id) => {
+  const updateTodo = todoList.map((element) => 
+			(id === element.id ? setTodoList({...todoList, complete: !element.complete})  : element)
+		)
+		
+return setTodoList(updateTodo)
+}
+
 return (
   <div className='App'>
-    {todoList.map((element) =>  <TodoNote object={element} id= {element.id} />)}
- 
+    {todoList.map((element) =>  <TodoNote object={element} id= {element.id} onCompletionToggle= {() => {toggleCompletion()}} />)}
+    
+
   </div>
 )
 
