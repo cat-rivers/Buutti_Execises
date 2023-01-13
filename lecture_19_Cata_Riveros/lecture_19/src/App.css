@@ -1,32 +1,30 @@
 .App {
-    display: grid;
-    justify-items: center;
-    margin: 15px;
-    background-color: rgba(216, 230, 237, 0.71);
-
+  display: grid;
+  justify-items: center;
+  margin: 15px;
+  background-color: rgba(216, 230, 237, 0.71);
 }
 
 .todo-note {
-    width: 50%;
-    padding: 10px;
-    margin: 10px;
-    border-radius: 10px;
-    background-color: rgba(249, 169, 182, 0.779);
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 10px;
+  background-color: rgba(249, 169, 182, 0.779);
 }
 
-form{  
-    display: grid;
-    grid-template-columns: 1fr 3fr 0.5fr 0.5fr;
-    padding: 5px 15px;
-    margin: 5px;
-    justify-content: space-between;
-
+form {
+  display: grid;
+  grid-template-columns: 1fr 3fr 0.5fr 0.5fr;
+  padding: 5px 15px;
+  margin: 5px;
+  justify-content: space-between;
 }
 
-.color-green{
-    background-color: rgb(163, 228, 163);
+.color-green {
+  background-color: rgb(163, 228, 163);
 }
 
 .color-red {
-    background-color: rgb(235, 94, 94);
+  background-color: rgb(235, 94, 94);
 }
