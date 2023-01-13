@@ -29,7 +29,6 @@ const TodoCard = props => {
         <EditTodo
           text={text}
           onChangeEditTodo={text => {
-            console.log(text);
             onChangeEditTodo(object.id, text);
             setEditMode(!editMode);
           }}
