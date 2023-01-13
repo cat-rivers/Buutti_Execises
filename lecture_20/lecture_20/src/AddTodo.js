@@ -2,7 +2,7 @@ import { useState } from "react";
 
 const AddTodo = props => {
   const { onAddNewTodo } = props;
-  const [taskTodo, setTaskTodo] = useState("Add new Task");
+  const [taskTodo, setTaskTodo] = useState("");
 
   const inputTask = e => {
     setTaskTodo(e.target.value);
@@ -14,6 +14,7 @@ const AddTodo = props => {
         type="text"
         name="submit"
         value={taskTodo}
+        placeholder="Add new Todo"
       />
       <button
         onClick={e => {
@@ -21,8 +22,7 @@ const AddTodo = props => {
           onAddNewTodo(taskTodo);
         }}
       >
-        {" "}
-        Add new Todo{" "}
+        Add New
       </button>
     </form>
   );

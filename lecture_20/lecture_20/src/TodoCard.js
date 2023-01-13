@@ -1,8 +1,13 @@
 import "./TodoCard.css";
 import DeleteTodo from "./DeleteTodo";
+import { useState } from "react";
+import EditTodo from "./EditTodo";
 
 const TodoCard = props => {
-  const { object, text, onToggleComplete, handleDelete } = props;
+  const { object, text, onToggleComplete, handleDelete, onChangeEditTodo } =
+    props;
+
+  const [editMode, setEditMode] = useState(false);
 
   return (
     <div
@@ -18,9 +23,22 @@ const TodoCard = props => {
           onToggleComplete(object.id);
         }}
       />
-      <p> {text}</p>
-      <button className="btn-close">x</button>
+      {!editMode ? (
+        <p> {text}</p>
+      ) : (
+        <EditTodo
+          text={text}
+          onChangeEditTodo={text => {
+            console.log(text);
+            onChangeEditTodo(object.id, text);
+            setEditMode(!editMode);
+          }}
+        />
+      )}
+
       <DeleteTodo id={object.id} handleDelete={handleDelete} />
+
+      {!editMode && <button onClick={() => setEditMode(true)}>Edit</button>}
     </div>
   );
 };

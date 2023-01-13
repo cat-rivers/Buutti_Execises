@@ -18,7 +18,7 @@ const defaultTodos = [
 const makeTodoFilterFunction = filter => todo =>
   todo.text.toLowerCase().includes(filter.toLowerCase());
 
-const TodoList = ({ todos, toggleComplete, handleDelete }) =>
+const TodoList = ({ todos, toggleComplete, handleDelete, editTodoText }) =>
   todos.map(todo => (
     <TodoCard
       key={todo.id}
@@ -26,6 +26,7 @@ const TodoList = ({ todos, toggleComplete, handleDelete }) =>
       text={todo.text}
       onToggleComplete={toggleComplete}
       handleDelete={handleDelete}
+      onChangeEditTodo={editTodoText}
     />
   ));
 
@@ -53,15 +54,25 @@ const Todos = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const editTodoText = (id, newText) => {
+    setTodos(
+      todos.map(todo => (todo.id === id ? { ...todo, text: newText } : todo))
+    );
+  };
+
   return (
     <>
-      <pre>{filter}</pre>
-      <input value={filter} onChange={e => setFilter(e.target.value)}></input>
+      <input
+        value={filter}
+        onChange={e => setFilter(e.target.value)}
+        placeholder="Filter"
+      ></input>
       <AddTodo onAddNewTodo={onAddNewTodo} />
       <TodoList
         todos={todos.filter(makeTodoFilterFunction(filter))}
         toggleComplete={toggleComplete}
         handleDelete={handleDelete}
+        editTodoText={editTodoText}
       />
     </>
   );
