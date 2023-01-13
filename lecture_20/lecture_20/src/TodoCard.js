@@ -2,7 +2,7 @@ import "./TodoCard.css";
 import DeleteTodo from "./DeleteTodo";
 import { useState } from "react";
 import EditTodo from "./EditTodo";
-
+import { Button, Container, Form } from "react-bootstrap";
 const TodoCard = props => {
   const { object, text, onToggleComplete, handleDelete, onChangeEditTodo } =
     props;
@@ -24,7 +24,7 @@ const TodoCard = props => {
         }}
       />
       {!editMode ? (
-        <p> {text}</p>
+        <p className="display-1"> {text}</p>
       ) : (
         <EditTodo
           text={text}
@@ -38,7 +38,7 @@ const TodoCard = props => {
 
       <DeleteTodo id={object.id} handleDelete={handleDelete} />
 
-      {!editMode && <button onClick={() => setEditMode(true)}>Edit</button>}
+      {!editMode && <Button onClick={() => setEditMode(true)}>Edit</Button>}
     </div>
   );
 };

@@ -7,19 +7,12 @@
   display: grid;
   text-align: center;
   grid-template-columns: 1fr 4fr 1fr;
-  height: 70px;
 }
 
 .todo-card p {
   font-size: 20px;
   margin-bottom: 0px;
   padding: 0px;
-}
-
-.btn-close {
-  height: fit-content;
-  width: fit-content;
-  margin: 8px;
 }
 
 .checkbox {
@@ -29,9 +22,9 @@
 }
 
 .color-red {
-  background-color: rgb(236, 88, 88);
+  background-color: rgb(232, 92, 139);
 }
 
 .color-green {
-  background-color: rgb(82, 209, 147);
+  background-color: rgb(87, 232, 198);
 }

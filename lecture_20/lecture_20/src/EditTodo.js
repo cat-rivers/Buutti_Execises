@@ -1,11 +1,12 @@
 import { useState } from "react";
+import { Form, Button } from "react-bootstrap";
 
 const EditTodo = props => {
   const { onChangeEditTodo, text } = props;
   const [value, setValue] = useState(text);
   return (
     <>
-      <form>
+      <Form>
         <input
           onChange={e => setValue(e.target.value)}
           placeholder="change todo text"
@@ -18,7 +19,7 @@ const EditTodo = props => {
         >
           Save
         </button>
-      </form>
+      </Form>
     </>
   );
 };

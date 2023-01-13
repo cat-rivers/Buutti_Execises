@@ -2,6 +2,7 @@ import { useState } from "react";
 import TodoCard from "./TodoCard";
 import AddTodo from "./AddTodo";
 import uuid4 from "uuid4";
+import { Button, Container, Form, Row, Col } from "react-bootstrap";
 
 const defaultTodos = [
   { id: 1, text: "Buy potatoes", complete: true },
@@ -61,20 +62,42 @@ const Todos = () => {
   };
 
   return (
-    <>
-      <input
-        value={filter}
-        onChange={e => setFilter(e.target.value)}
-        placeholder="Filter"
-      ></input>
-      <AddTodo onAddNewTodo={onAddNewTodo} />
-      <TodoList
-        todos={todos.filter(makeTodoFilterFunction(filter))}
-        toggleComplete={toggleComplete}
-        handleDelete={handleDelete}
-        editTodoText={editTodoText}
-      />
-    </>
+    <Container>
+      <Row>
+        <Col className="col-6 text-center text-primary">
+          <h1> Todo App</h1>
+        </Col>
+      </Row>
+
+      <Row className="mx-2">
+        <Col className="col-4 ">
+          <Form>
+            <Form.Control
+              className="my-2"
+              value={filter}
+              onChange={e => setFilter(e.target.value)}
+              placeholder="Filter"
+            />
+          </Form>
+        </Col>
+      </Row>
+
+      <Row className="mx-2">
+        <Col className="col-4">
+          <AddTodo onAddNewTodo={onAddNewTodo} />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <TodoList
+            todos={todos.filter(makeTodoFilterFunction(filter))}
+            toggleComplete={toggleComplete}
+            handleDelete={handleDelete}
+            editTodoText={editTodoText}
+          />
+        </Col>
+      </Row>
+    </Container>
   );
 };
 

@@ -1,10 +1,12 @@
+import { Button, CloseButton } from "react-bootstrap";
 const DeleteTodo = props => {
   const { id, handleDelete } = props;
 
   return (
-    <button className="btn-close" onClick={() => handleDelete(id)}>
-      x
-    </button>
+    <CloseButton
+      className="btn-close"
+      onClick={() => handleDelete(id)}
+    ></CloseButton>
   );
 };
 
