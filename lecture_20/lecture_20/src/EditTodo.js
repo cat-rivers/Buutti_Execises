@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Form, Button } from "react-bootstrap";
+import { Button, Form } from "react-bootstrap";
 
 const EditTodo = props => {
   const { onChangeEditTodo, text } = props;
@@ -7,18 +7,19 @@ const EditTodo = props => {
   return (
     <>
       <Form>
-        <input
+        <Form.Control
           onChange={e => setValue(e.target.value)}
           placeholder="change todo text"
-        ></input>
-        <button
+        ></Form.Control>
+        <Button
+          className="m-2"
           onClick={e => {
             e.preventDefault();
             onChangeEditTodo(value);
           }}
         >
           Save
-        </button>
+        </Button>
       </Form>
     </>
   );
