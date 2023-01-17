@@ -2,10 +2,9 @@ import "./TodoCard.css";
 import DeleteTodo from "./DeleteTodo";
 import { useState } from "react";
 import EditTodo from "./EditTodo";
-import { Button, Container, Form } from "react-bootstrap";
+import { Button } from "react-bootstrap";
 const TodoCard = props => {
-  const { object, text, onToggleComplete, handleDelete, onChangeEditTodo } =
-    props;
+  const { object, onToggleComplete, removePost, onChangeEditTodo } = props;
 
   const [editMode, setEditMode] = useState(false);
 
@@ -19,15 +18,15 @@ const TodoCard = props => {
         className="checkbox "
         type="checkbox"
         checked={object.complete}
-        onClick={() => {
+        onChange={() => {
           onToggleComplete(object.id);
         }}
       />
       {!editMode ? (
-        <p className="display-1"> {text}</p>
+        <p className="display-1"> {object.text}</p>
       ) : (
         <EditTodo
-          text={text}
+          text={object.text}
           onChangeEditTodo={text => {
             onChangeEditTodo(object.id, text);
             setEditMode(!editMode);
@@ -35,7 +34,7 @@ const TodoCard = props => {
         />
       )}
 
-      <DeleteTodo id={object.id} handleDelete={handleDelete} />
+      <DeleteTodo id={object.id} removePost={removePost} />
 
       {!editMode && <Button onClick={() => setEditMode(true)}>Edit</Button>}
     </div>

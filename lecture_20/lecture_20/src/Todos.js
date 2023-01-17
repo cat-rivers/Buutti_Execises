@@ -1,17 +1,14 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import TodoCard from "./TodoCard";
 import AddTodo from "./AddTodo";
 import uuid4 from "uuid4";
-import { Button, Container, Form, Row, Col } from "react-bootstrap";
-
-const defaultTodos = [
-  { id: 1, text: "Buy potatoes", complete: true },
-  { id: 2, text: "Make food", complete: false },
-  { id: 3, text: "Exercise", complete: false },
-  { id: 4, text: "Do the dishes", complete: false },
-  { id: 5, text: "Floss the teeth", complete: false },
-  { id: 6, text: "Play videogames", complete: true },
-];
+import { Container, Form, Row, Col } from "react-bootstrap";
+import {
+  getAllPosts,
+  editPost,
+  deletePost,
+  createPost,
+} from "./services/postActions";
 
 // given a filter string
 // return a function that can be used with array.filter
@@ -19,46 +16,72 @@ const defaultTodos = [
 const makeTodoFilterFunction = filter => todo =>
   todo.text.toLowerCase().includes(filter.toLowerCase());
 
-const TodoList = ({ todos, toggleComplete, handleDelete, editTodoText }) =>
+const TodoList = ({ todos, toggleComplete, removePost, editTodoText }) =>
   todos.map(todo => (
     <TodoCard
       key={todo.id}
       object={todo}
-      text={todo.text}
       onToggleComplete={toggleComplete}
-      handleDelete={handleDelete}
+      removePost={removePost}
       onChangeEditTodo={editTodoText}
     />
   ));
 
+//Main TODO  component
 const Todos = () => {
-  const [todos, setTodos] = useState(defaultTodos);
+  const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("");
 
+  //Fetch the objects
+  useEffect(() => {
+    console.log("fetching data!");
+
+    getAllPosts().then(posts => {
+      console.log(posts); // checking what is returned
+      setTodos(posts);
+    });
+  }, []);
+
+  // Edit the todo post text UI and DB
+  const updatePostText = (id, newText) => {
+    const todo = todos.find(post => post.id === id);
+    const changedPost = { ...todo, text: newText };
+
+    editPost(changedPost, id).then(changedPost => {
+      setTodos(todos.map(post => (post.id === id ? changedPost : post)));
+    });
+  };
+
+  // Toggle complete UI and DB
   const toggleComplete = id => {
-    setTodos(
-      todos.map(todo =>
-        todo.id === id ? { ...todo, complete: !todo.complete } : todo
-      )
-    );
+    const todo = todos.find(post => post.id === id);
+    const changedPost = { ...todo, complete: !todo.complete };
+
+    editPost(changedPost, id).then(changedPost => {
+      setTodos(todos.map(post => (post.id === id ? changedPost : post)));
+    });
   };
 
-  const onAddNewTodo = task => {
-    const newTodoList = [
-      { id: uuid4(), text: task, complete: false },
-      ...todos,
-    ];
-    setTodos(newTodoList);
+  // Delete todo post from UI and DB
+  const removePost = id => {
+    deletePost(id)
+      .then(() => {
+        setTodos(todos.filter(post => post.id !== id));
+      })
+      .catch(() => {
+        console.log("failed! °w°");
+      });
   };
 
-  const handleDelete = id => {
-    setTodos(todos.filter(todo => todo.id !== id));
-  };
-
-  const editTodoText = (id, newText) => {
-    setTodos(
-      todos.map(todo => (todo.id === id ? { ...todo, text: newText } : todo))
-    );
+  // Create new todo post UI and DB
+  const createNewTodoPost = task => {
+    createPost({
+      id: uuid4(),
+      text: task,
+      complete: false,
+    }).then(newPost => {
+      setTodos([newPost, ...todos]);
+    });
   };
 
   return (
@@ -84,7 +107,7 @@ const Todos = () => {
 
       <Row className="mx-2">
         <Col className="col-4">
-          <AddTodo onAddNewTodo={onAddNewTodo} />
+          <AddTodo onAddNewTodo={createNewTodoPost} />
         </Col>
       </Row>
       <Row>
@@ -92,8 +115,8 @@ const Todos = () => {
           <TodoList
             todos={todos.filter(makeTodoFilterFunction(filter))}
             toggleComplete={toggleComplete}
-            handleDelete={handleDelete}
-            editTodoText={editTodoText}
+            removePost={removePost}
+            editTodoText={updatePostText}
           />
         </Col>
       </Row>
