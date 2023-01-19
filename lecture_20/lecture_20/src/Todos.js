@@ -37,7 +37,6 @@ const Todos = () => {
     console.log("fetching data!");
 
     getAllPosts().then(posts => {
-      console.log(posts); // checking what is returned
       setTodos(posts);
     });
   }, []);
