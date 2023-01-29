@@ -72,9 +72,9 @@
         "copies": [
             {
                 "id": "1",
-                "status": "in_library",
-                "borrower_id": null,
-                "due_date": null
+                "status": "borrowed",
+                "borrower_id": "76561",
+                "due_date": "2023-02-11T14:54:27.422Z"
             }
         ],
         "published": "2014-02-01T00:00:00.000Z"
@@ -91,9 +91,9 @@
         "copies": [
             {
                 "id": "1",
-                "status": "in_library",
-                "borrower_id": null,
-                "due_date": null
+                "status": "borrowed",
+                "borrower_id": "17349",
+                "due_date": "2023-02-11T14:42:13.961Z"
             }
         ],
         "published": "2014-07-01T00:00:00.000Z"
